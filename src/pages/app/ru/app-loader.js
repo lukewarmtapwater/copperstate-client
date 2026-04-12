@@ -1,7 +1,7 @@
 import { redirect } from "react-router";
 
 async function appLoader() {
-  const res = await fetch("http://localhost:3000/user/me", {
+  const res = await fetch("https://copperstateautowholesale.com/user/me", {
     credentials: "include",
   });
 

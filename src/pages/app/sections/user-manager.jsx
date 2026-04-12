@@ -9,9 +9,12 @@ function UserManager() {
 
   useEffect(() => {
     async function getUsers() {
-      const res = await fetch("http://localhost:3000/admin/users", {
-        credentials: "include",
-      });
+      const res = await fetch(
+        "https://copperstateautowholesale.com/admin/users",
+        {
+          credentials: "include",
+        },
+      );
       const result = await res.json();
 
       if (res.ok) {
@@ -46,15 +49,18 @@ function User({ user }) {
     const previousRole = role;
     setRole(newRole);
 
-    const res = await fetch("http://localhost:3000/admin/change-role", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-      body: JSON.stringify({
-        userEmail: user.email,
-        role: roles.indexOf(newRole),
-      }),
-    });
+    const res = await fetch(
+      "https://copperstateautowholesale.com/admin/change-role",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          userEmail: user.email,
+          role: roles.indexOf(newRole),
+        }),
+      },
+    );
 
     if (!res.ok) {
       setRole(previousRole);

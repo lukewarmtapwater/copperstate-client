@@ -10,7 +10,7 @@ function App() {
     <div className="px-8">
       <Nav user={user} />
 
-      {<UserManager />}
+      {user.role === 0 && <UserManager />}
       {user.role === 3 && <NoAccess />}
     </div>
   );
