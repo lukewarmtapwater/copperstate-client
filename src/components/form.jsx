@@ -1,19 +1,20 @@
-import Button from "./button";
+import { Form, useActionData, useNavigation } from "react-router";
 
-function Form({ onSubmit, children, className, ...props }) {
+function FormWrapper({ method = "post", children }) {
+  const data = useActionData();
+  const navigation = useNavigation();
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSubmit(Object.fromEntries(new FormData(e.target)));
-      }}
-      className="w-full mt-12"
-      {...props}
-    >
+    <Form method={method} className="w-full mt-10">
       {children}
-      <Button className="mt-14" />
-    </form>
+
+      <p className="text-center text-red-500 mt-10 mb-3">{data?.error}</p>
+
+      <button className="w-full" type="submit">
+        {navigation.state === "submitting" ? "Loading..." : "Submit →"}
+      </button>
+    </Form>
   );
 }
 
-export default Form;
+export default FormWrapper;
