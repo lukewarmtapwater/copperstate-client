@@ -17,12 +17,14 @@ const router = createBrowserRouter([
       {
         path: "login",
         Component: LoginPage,
+        hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
         loader: authLoader,
         action: authAction,
       },
       {
         path: "sign-up",
         Component: SignUpPage,
+        hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
         loader: authLoader,
         action: authAction,
       },
