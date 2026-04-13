@@ -32,7 +32,7 @@ function UserManager() {
   }, []);
 
   return (
-    <div className="w-full bg-[#F6F8FA] rounded-md p-6 py-8">
+    <div className="bg-[#F6F8FA] rounded-md p-6 py-8 m-8">
       <h3 className="mb-4">Manage Users</h3>
 
       <div className="flex flex-col gap-5">
