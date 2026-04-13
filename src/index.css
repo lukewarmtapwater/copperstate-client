@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Condensed";
+  src: url(/fonts/ABCDiatypeCondensed-Bold-Trial.otf);
+  font-display: swap;
+}
+@font-face {
+  font-family: "Indivisible";
+  src: url(/fonts/fonnts.com-Indivisible.otf);
+  font-display: swap;
+}
+
+body {
+  @apply indivisible;
+}
+h1 {
+  @apply text-[70px] condensed;
+}
+h2 {
+  @apply text-[45px] condensed;
+}
+h3 {
+  @apply text-[24px];
+}
+h4 {
+  @apply text-[17px];
+}
+a {
+  @apply text-accent hover:underline hover:cursor-pointer;
+}
+p {
+  @apply text-less-light;
+}
+button {
+  @apply bg-accent px-4 py-3 rounded-sm hover:bg-opacity-80;
+}
+
+.condensed {
+  @apply font-['Condensed'] leading-[60px] uppercase;
+}
+.indivisible {
+  @apply font-['Indivisible'] tracking-tight;
+}
