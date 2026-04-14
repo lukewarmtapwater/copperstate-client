@@ -18,7 +18,7 @@ function Input({
         id={id}
         name={id}
         className={
-          "px-3 py-3.5 w-full rounded-sm border border-accent bg-transparent placeholder:text-less-less-light focus:outline-none focus:border-2 " +
+          "px-3 py-4 w-full rounded-sm border border-accent bg-transparent placeholder:text-less-less-light focus:outline-none focus:border-2 " +
           className
         }
         placeholder={placeholder || label}

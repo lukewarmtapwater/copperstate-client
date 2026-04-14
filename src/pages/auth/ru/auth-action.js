@@ -14,7 +14,7 @@ async function authAction({ request }) {
     return { error: err.error };
   }
 
-  return redirect("/app");
+  return redirect("/dashboard");
 }
 
 export default authAction;

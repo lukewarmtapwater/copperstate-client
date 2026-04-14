@@ -5,7 +5,7 @@ async function authLoader() {
   const res = await request("/user/me");
 
   if (res.ok) {
-    return redirect("/app");
+    return redirect("/dashboard");
   }
 }
 

@@ -5,6 +5,7 @@ import formatDateTime from "../../../utils/formatDateTime";
 import request from "../../../utils/request";
 import Button from "../../../components/button";
 import { RiArrowDropRightLine } from "@remixicon/react";
+import DashboardSection from "../../../components/dashboard-section";
 
 function UserManager() {
   const [users, setUsers] = useState(null);
@@ -30,7 +31,7 @@ function UserManager() {
   }, []);
 
   return (
-    <div className="bg-[#F5F5F6] rounded-md p-6 py-8 m-6">
+    <DashboardSection>
       <div className="w-full flex justify-between items-center mb-6">
         <h3>Manage Users</h3>
         <Button variant="ghost">
@@ -45,7 +46,7 @@ function UserManager() {
           <h4 className="text-less-light">{message}</h4>
         )}
       </div>
-    </div>
+    </DashboardSection>
   );
 }
 

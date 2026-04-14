@@ -3,12 +3,13 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import LoginPage from "./pages/auth/login";
 import SignUpPage from "./pages/auth/sign-up";
-import App from "./pages/app/app";
 import AccountLayout from "./layouts/account-layout";
 import "./index.css";
 import authAction from "./pages/auth/ru/auth-action";
 import authLoader from "./pages/auth/ru/auth-loader";
-import appLoader from "./pages/app/ru/app-loader";
+import dashboardLoader from "./pages/dashboard/ru/dashboard-loader";
+import DashboardLayout from "./layouts/dashboard-layout";
+import Dashboard from "./pages/dashboard/dashboard";
 
 const router = createBrowserRouter([
   {
@@ -31,10 +32,16 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "app",
-    loader: appLoader,
-    hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
-    Component: App,
+    Component: DashboardLayout,
+    loader: dashboardLoader,
+    children: [
+      {
+        path: "dashboard",
+        loader: dashboardLoader,
+        hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
+        Component: Dashboard,
+      },
+    ],
   },
 ]);
 
