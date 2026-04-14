@@ -5,7 +5,7 @@ import Form from "../../components/form";
 function LoginPage() {
   return (
     <>
-      <h1 className="sm:mt-14 mt-20 mb-14">WELCOME BACK</h1>
+      <h1 className="sm:mt-14 mt-20 mb-12">WELCOME BACK</h1>
       <Form>
         <div>
           <Input

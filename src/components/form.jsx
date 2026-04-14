@@ -1,4 +1,5 @@
 import { Form, useActionData, useNavigation } from "react-router";
+import Button from "./button";
 
 function FormWrapper({ method = "post", children }) {
   const data = useActionData();
@@ -11,11 +12,10 @@ function FormWrapper({ method = "post", children }) {
     >
       {children}
       <div>
-        <p className="text-center text-red-500 mt-10 mb-3">{data?.error}</p>
-
-        <button className="w-full" type="submit">
-          {navigation.state === "submitting" ? "Loading..." : "Submit →"}
-        </button>
+        <p className="text-center text-red-500 mt-14 mb-4">{data?.error}</p>
+        <Button loading={navigation.state === "submitting"} className="w-full">
+          Submit
+        </Button>
       </div>
     </Form>
   );

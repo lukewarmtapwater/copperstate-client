@@ -34,9 +34,6 @@ a {
 p {
   @apply text-less-light;
 }
-button {
-  @apply bg-accent px-4 py-3 rounded-sm hover:bg-opacity-80;
-}
 
 .condensed {
   @apply font-['Condensed'] leading-[60px] uppercase;

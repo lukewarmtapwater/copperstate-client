@@ -6,7 +6,7 @@ import { Link } from "react-router";
 function SignUpPage() {
   return (
     <>
-      <h1 className="sm:mt-14 mt-20 mb-14">CREATE ACCOUNT</h1>
+      <h1 className="sm:mt-14 mt-20 mb-12">CREATE ACCOUNT</h1>
       <Form>
         <div>
           <Input

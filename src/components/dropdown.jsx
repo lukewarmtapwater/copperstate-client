@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { RiArrowDownSLine } from "@remixicon/react";
+import Button from "./button";
 
 function Dropdown({ options = [], value, onChange, placeholder }) {
   const [open, setOpen] = useState(false);
@@ -17,17 +18,13 @@ function Dropdown({ options = [], value, onChange, placeholder }) {
 
   return (
     <div ref={ref} className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="flex justify-between gap-1 items-center py-2"
-      >
+      <Button onClick={() => setOpen(!open)}>
         {value || placeholder}
         <RiArrowDownSLine />
-      </button>
+      </Button>
 
       {open && (
-        <div className="absolute z-50 mt-2 w-full border border-less-less-light rounded-md bg-white">
+        <div className="absolute z-50 mt-2 border border-less-less-light rounded-md bg-white">
           {options.map((opt) => (
             <div
               key={opt}
@@ -35,7 +32,7 @@ function Dropdown({ options = [], value, onChange, placeholder }) {
                 onChange(opt);
                 setOpen(false);
               }}
-              className="w-full px-3 py-2 cursor-pointer hover:bg-gray-100"
+              className="w-full px-4 py-3 cursor-pointer hover:bg-gray-100"
             >
               {opt}
             </div>

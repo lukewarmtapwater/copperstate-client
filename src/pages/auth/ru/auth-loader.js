@@ -1,9 +1,8 @@
 import { redirect } from "react-router";
+import request from "../../../utils/request";
 
 async function authLoader() {
-  const res = await fetch("https://copperstate-server.vercel.app/user/me", {
-    credentials: "include",
-  });
+  const res = await request("/user/me");
 
   if (res.ok) {
     return redirect("/app");

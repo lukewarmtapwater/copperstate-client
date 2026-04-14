@@ -1,7 +1,14 @@
-import roles from "../../../utils/roles";
-import Input from "../../../components/input";
+import {
+  RiDashboardLine,
+  RiSettings3Line,
+  RiFileListLine,
+  RiGroupLine,
+  RiBarChartLine,
+} from "@remixicon/react";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import request from "../../../utils/request";
+import Button from "../../../components/button";
 
 function Sidebar({ user }) {
   const [loading, setLoading] = useState(false);
@@ -10,12 +17,7 @@ function Sidebar({ user }) {
   async function LogOut() {
     setLoading(true);
 
-    const res = await fetch(
-      "https://copperstate-server.vercel.app/user/log-out",
-      {
-        credentials: "include",
-      },
-    );
+    const res = await request("/user/log-out");
 
     if (res.ok) {
       navigate("/login");
@@ -23,37 +25,35 @@ function Sidebar({ user }) {
     setLoading(false);
   }
   return (
-    <div className="w-[300px] h-screen py-6 px-4 border-r border-gray-300 flex flex-col">
-      <div className="flex items-center gap-2 mb-5">
-        <div className="w-12 h-12 rounded-full bg-gray-300"></div>
-        <div className="leading-tight">
-          <h4>{user.email.split("@")[0]}</h4>
-          <p className="text-sm text-gray-500">{roles[user.role]}</p>
-        </div>
+    <div className="w-[300px] h-screen py-6 px-6 border-r border-gray-300 flex flex-col">
+      <div className="flex items-center justify-between">
+        <h3>{user.email.split("@")[0]}</h3>
+        <p className="bg-accent text-black p-1 px-3 rounded-md">Admin</p>
       </div>
 
-      <Input placeholder="Search..." label={false} className="py-3" />
-
-      <nav className="flex flex-col gap-1 text-less-light mt-4">
-        <SidebarButton text="Dashboard" />
-        <SidebarButton text="Inventory" />
-        <SidebarButton text="Orders" />
-        <SidebarButton text="Users" />
-        <SidebarButton text="Analytics" />
-        <SidebarButton text="Settings" />
+      <nav className="flex flex-col gap-1 text-less-light mt-8">
+        <h4 className="text-sm text-less-less-light uppercase my-3">MENU</h4>
+        <SidebarButton text="Dashboard" icon={<RiDashboardLine />} />
+        <SidebarButton text="Inventory" icon={<RiFileListLine />} />
+        <SidebarButton text="Manage Users" icon={<RiGroupLine />} />
+        <h4 className="text-sm text-less-less-light uppercase my-3">GENERAL</h4>
+        <SidebarButton text="Analytics" icon={<RiBarChartLine />} />
+        <SidebarButton text="Settings" icon={<RiSettings3Line />} />
       </nav>
 
-      <button onClick={LogOut} className="mt-auto">
-        {loading ? "Loading..." : "Log Out"}
-      </button>
+      <Button onClick={LogOut} className="mt-auto" loading={loading}>
+        Log Out
+      </Button>
     </div>
   );
 }
 
-function SidebarButton({ text }) {
+function SidebarButton({ text, icon }) {
   return (
-    <div className="rounded-md px-4 py-3 hover:bg-[#F6F8FA] cursor-pointer">
-      {text}
+    <div className="text-[16px] flex items-center gap-3 rounded-md px-3 py-3.5 hover:bg-[#F6F8FA] cursor-pointer">
+      <div className="w-6 h-6 mb-[4px]">{icon}</div>
+
+      <span>{text}</span>
     </div>
   );
 }
