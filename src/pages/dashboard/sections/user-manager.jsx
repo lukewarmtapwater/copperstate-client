@@ -43,7 +43,7 @@ function UserManager() {
         {users ? (
           users.map((user, i) => <User user={user} key={i} />)
         ) : (
-          <h4 className="text-less-light">{message}</h4>
+          <h4 className="text-gray-600">{message}</h4>
         )}
       </div>
     </DashboardSection>
@@ -71,7 +71,7 @@ function User({ user }) {
   }
 
   return (
-    <div className="sm:flex justify-between bg-white border border-accent/40 p-6 rounded-md">
+    <div className="sm:flex justify-between bg-white border border-gray-300 p-6 rounded-md">
       <div className="mb-4 sm:mb-0">
         <h4>{user.email}</h4>
         <div className="mt-4 ml-1">
@@ -80,12 +80,7 @@ function User({ user }) {
         </div>
       </div>
 
-      <Dropdown
-        placeholder="Change role"
-        value={role}
-        options={roles}
-        onChange={handleRoleChange}
-      />
+      <Dropdown value={role} options={roles} onChange={handleRoleChange} />
     </div>
   );
 }

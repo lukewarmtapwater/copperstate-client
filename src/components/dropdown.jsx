@@ -24,7 +24,7 @@ function Dropdown({ options = [], value, onChange, placeholder }) {
       </Button>
 
       {open && (
-        <div className="absolute z-50 mt-2 border border-less-less-light rounded-md bg-white">
+        <div className="absolute z-50 mt-2 border border-accent/40 rounded-md bg-white">
           {options.map((opt) => (
             <div
               key={opt}

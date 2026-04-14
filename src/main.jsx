@@ -10,7 +10,9 @@ import authLoader from "./pages/auth/ru/auth-loader";
 import dashboardLoader from "./pages/dashboard/ru/dashboard-loader";
 import DashboardLayout from "./layouts/dashboard-layout";
 import Dashboard from "./pages/dashboard/dashboard";
+import Loader from "./components/loader";
 
+const hydrateFallbackElement = <Loader className="w-10 h-10 mt-10" />;
 const router = createBrowserRouter([
   {
     Component: AccountLayout,
@@ -18,14 +20,14 @@ const router = createBrowserRouter([
       {
         path: "login",
         Component: LoginPage,
-        hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
+        hydrateFallbackElement,
         loader: authLoader,
         action: authAction,
       },
       {
         path: "sign-up",
         Component: SignUpPage,
-        hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
+        hydrateFallbackElement,
         loader: authLoader,
         action: authAction,
       },
@@ -34,11 +36,12 @@ const router = createBrowserRouter([
   {
     Component: DashboardLayout,
     loader: dashboardLoader,
+    hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
     children: [
       {
         path: "dashboard",
         loader: dashboardLoader,
-        hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
+        hydrateFallbackElement,
         Component: Dashboard,
       },
     ],

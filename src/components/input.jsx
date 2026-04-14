@@ -7,7 +7,7 @@ function Input({
   ...props
 }) {
   return (
-    <div className="flex flex-col gap-2 text-less-light mb-4">
+    <div className="flex flex-col gap-2 text-gray-600 mb-4">
       {label && (
         <label htmlFor={id}>
           {label}
@@ -18,7 +18,7 @@ function Input({
         id={id}
         name={id}
         className={
-          "px-3 py-4 w-full rounded-sm border border-accent bg-transparent placeholder:text-less-less-light focus:outline-none focus:border-2 " +
+          "px-3 py-4 w-full rounded-sm border border-accent bg-transparent placeholder:text-gray-400 focus:outline-none focus:border-2 " +
           className
         }
         placeholder={placeholder || label}
