@@ -11,9 +11,14 @@ import dashboardLoader from "./pages/dashboard/ru/dashboard-loader";
 import DashboardLayout from "./layouts/dashboard-layout";
 import Dashboard from "./pages/dashboard/dashboard";
 import Loader from "./components/loader";
+import Index from "./pages";
 
 const hydrateFallbackElement = <Loader className="w-10 h-10 mt-10" />;
 const router = createBrowserRouter([
+  {
+    path: "",
+    Component: Index,
+  },
   {
     Component: AccountLayout,
     children: [

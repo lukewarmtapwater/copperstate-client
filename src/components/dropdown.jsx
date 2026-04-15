@@ -24,7 +24,7 @@ function Dropdown({ options = [], value, onChange, placeholder }) {
       </Button>
 
       {open && (
-        <div className="absolute z-50 mt-2 border border-accent/40 rounded-md bg-white">
+        <div className="absolute z-50 mt-2 border border-primary/40 rounded-md bg-background">
           {options.map((opt) => (
             <div
               key={opt}
@@ -32,7 +32,7 @@ function Dropdown({ options = [], value, onChange, placeholder }) {
                 onChange(opt);
                 setOpen(false);
               }}
-              className="w-full px-4 py-3 cursor-pointer hover:bg-gray-100"
+              className="w-full px-4 py-3 cursor-pointer hover:bg-subtle"
             >
               {opt}
             </div>

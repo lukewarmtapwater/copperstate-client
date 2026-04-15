@@ -1,8 +1,8 @@
 import { useLoaderData } from "react-router";
-import UserManager from "./sections/user-manager";
 import NoAccess from "./sections/no-access";
 import DashboardSection from "../../components/dashboard-section";
 import Button from "../../components/button";
+import Users from "./sections/users";
 
 function Dashboard() {
   const user = useLoaderData();
@@ -18,31 +18,29 @@ function Dashboard() {
         </div>
 
         <div className="flex gap-3">
-          <DashboardSection className="pl-6 pr-16">
-            <h3 className="text-md mb-8">Employees</h3>
-            <h1 className="text-accent">5</h1>
-            <p>
-              <span className="text-black">3</span> are active right now.
-            </p>
-          </DashboardSection>
-          <DashboardSection className="pl-6 pr-16">
-            <h3 className="text-md mb-8">Total Cars</h3>
-            <h1 className="text-accent">25</h1>
-            <p>
-              Increased <span className="text-black">20%</span> from last week
-            </p>
+          <DashboardSection
+            title="Employees"
+            footer="3 are active at the moment"
+          >
+            <h1 className="text-primary">5</h1>
           </DashboardSection>
 
-          <DashboardSection className="pl-6 pr-16">
-            <h3 className="text-md mb-8">Cars Awaiting Inspection</h3>
-            <h1 className="text-accent">13</h1>
-            <p>
-              Decreased <span className="text-black">50%</span> from yesterday
-            </p>
+          <DashboardSection
+            title="Total Cars"
+            footer="Increased 20% from last week."
+          >
+            <h1 className="text-primary">25</h1>
+          </DashboardSection>
+
+          <DashboardSection
+            title="Cars Awaiting Inspection"
+            footer="Decreased 50% from yesterday."
+          >
+            <h1 className="text-primary">13</h1>
           </DashboardSection>
         </div>
 
-        {user.role === 0 && <UserManager />}
+        {user.role === 0 && <Users />}
         {user.role === 3 && <NoAccess />}
       </div>
     </div>

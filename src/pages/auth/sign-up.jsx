@@ -8,7 +8,7 @@ function SignUpPage() {
     <>
       <h1 className="sm:mt-14 mt-20 mb-12">CREATE ACCOUNT</h1>
       <Form>
-        <div>
+        <div className="flex flex-col gap-4">
           <Input
             id="email"
             label="Email Address"

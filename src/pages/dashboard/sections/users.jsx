@@ -3,11 +3,9 @@ import Dropdown from "../../../components/dropdown";
 import roles from "../../../utils/roles";
 import formatDateTime from "../../../utils/formatDateTime";
 import request from "../../../utils/request";
-import Button from "../../../components/button";
-import { RiArrowDropRightLine } from "@remixicon/react";
 import DashboardSection from "../../../components/dashboard-section";
 
-function UserManager() {
+function Users() {
   const [users, setUsers] = useState(null);
   const [message, setMessage] = useState("Loading...");
 
@@ -31,19 +29,12 @@ function UserManager() {
   }, []);
 
   return (
-    <DashboardSection>
-      <div className="w-full flex justify-between items-center mb-6">
-        <h3>Manage Users</h3>
-        <Button variant="ghost">
-          View all Users <RiArrowDropRightLine />
-        </Button>
-      </div>
-
+    <DashboardSection title="Manage Users">
       <div className="flex flex-col gap-4">
         {users ? (
           users.map((user, i) => <User user={user} key={i} />)
         ) : (
-          <h4 className="text-gray-600">{message}</h4>
+          <h4 className="text-foreground">{message}</h4>
         )}
       </div>
     </DashboardSection>
@@ -71,7 +62,7 @@ function User({ user }) {
   }
 
   return (
-    <div className="sm:flex justify-between bg-white border border-gray-300 p-6 rounded-md">
+    <div className="sm:flex justify-between bg-background border border-muted p-6 rounded-md">
       <div className="mb-4 sm:mb-0">
         <h4>{user.email}</h4>
         <div className="mt-4 ml-1">
@@ -85,4 +76,4 @@ function User({ user }) {
   );
 }
 
-export default UserManager;
+export default Users;

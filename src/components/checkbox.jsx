@@ -1,4 +1,4 @@
-function CheckBox({ id, label, checked, onChange, className = "", ...props }) {
+function CheckBox({ id, label, checked, onChange, className, ...props }) {
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
       <input
@@ -7,7 +7,7 @@ function CheckBox({ id, label, checked, onChange, className = "", ...props }) {
         name={id}
         checked={checked}
         onChange={onChange}
-        className="w-4 h-4 accent-accent cursor-pointer"
+        className="w-4 h-4 accent-primary cursor-pointer mb-[3px]"
         {...props}
       />
 

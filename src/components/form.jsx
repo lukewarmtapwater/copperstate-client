@@ -12,7 +12,7 @@ function FormWrapper({ method = "post", children }) {
     >
       {children}
       <div>
-        <p className="text-center text-red-500 mt-14 mb-4">{data?.error}</p>
+        <p className="text-center text-danger mt-14 mb-4">{data?.error}</p>
         <Button loading={navigation.state === "submitting"} className="w-full">
           Submit
         </Button>

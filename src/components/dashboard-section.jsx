@@ -1,10 +1,12 @@
-function DashboardSection({ children, className, ...props }) {
+function DashboardSection({ title, footer, children, className, ...props }) {
   return (
     <div
-      className={"bg-gray-100 rounded-md px-8 py-8 m-3.5 ml-0 " + className}
+      className={`bg-subtle rounded-md px-8 py-8 m-3.5 border border-muted ml-0 ${className}`}
       {...props}
     >
+      {title && <h3 className="text-md mb-8">{title}</h3>}
       {children}
+      {footer && <p className="mt-2">{footer}</p>}
     </div>
   );
 }

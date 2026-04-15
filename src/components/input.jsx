@@ -1,3 +1,5 @@
+import { twMerge } from "tailwind-merge";
+
 function Input({
   id,
   label,
@@ -7,20 +9,21 @@ function Input({
   ...props
 }) {
   return (
-    <div className="flex flex-col gap-2 text-gray-600 mb-4">
+    <div className="flex flex-col gap-2 text-foreground">
       {label && (
         <label htmlFor={id}>
           {label}
-          {required && <span className="text-red-500"> *</span>}
+          {required && <span className="text-danger"> *</span>}
         </label>
       )}
+
       <input
         id={id}
         name={id}
-        className={
-          "px-3 py-4 w-full rounded-sm border border-accent bg-transparent placeholder:text-gray-400 focus:outline-none focus:border-2 " +
-          className
-        }
+        className={twMerge(
+          "px-3 py-4 w-full rounded-sm border border-primary bg-transparent placeholder:text-muted focus:outline-none focus:border-2",
+          className,
+        )}
         placeholder={placeholder || label}
         {...props}
       />
