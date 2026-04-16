@@ -1,15 +1,12 @@
 import { Form, useActionData, useNavigation } from "react-router";
 import Button from "./button";
 
-function FormWrapper({ method = "post", children }) {
+function FormWrapper({ method = "post", className, children }) {
   const data = useActionData();
   const navigation = useNavigation();
 
   return (
-    <Form
-      method={method}
-      className="w-full h-full flex flex-col justify-between"
-    >
+    <Form method={method} className={`w-full ${className}`}>
       {children}
       <div>
         <p className="text-center text-danger mt-14 mb-4">{data?.error}</p>

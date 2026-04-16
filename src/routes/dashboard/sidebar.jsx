@@ -7,27 +7,31 @@ import {
 } from "@remixicon/react";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import request from "../../../utils/request";
-import Button from "../../../components/button";
-import roles from "../../../utils/roles";
+import request from "../../utils/request";
+import Button from "../../components/button";
+import roles from "../../utils/roles";
 
 function Sidebar({ user }) {
   return (
     <div className="w-[230px] h-screen py-8 px-5 border-r border-muted flex flex-col">
-      <div className="">
+      <div>
         <h4 className="-mb-1">{user.email.split("@")[0]}</h4>
         <p className="text-sm">{roles[user.role]}</p>
       </div>
 
-      <nav className="flex flex-col gap-2 mt-8 [&>h4]:text-xs [&>h4]:text-muted [&>h4]:uppercase [&>h4]:my-3">
+      <nav className="flex flex-col gap-2 mt-8 [&>h4]:text-xs [&>h4]:text-muted [&>h4]:my-3">
         <h4>MENU</h4>
         <SidebarButton
           text="Dashboard"
           icon={<RiDashboardLine />}
           to="/dashboard"
         />
+        <SidebarButton
+          text="Inventory"
+          icon={<RiFileListLine />}
+          to="/inventory"
+        />
         <SidebarButton text="Create Ticket" icon={<RiFileAddLine />} />
-        <SidebarButton text="Inventory" icon={<RiFileListLine />} />
         <h4>GENERAL</h4>
         <SidebarButton text="Analytics" icon={<RiBarChartLine />} />
         <SidebarButton text="Settings" icon={<RiSettings3Line />} />

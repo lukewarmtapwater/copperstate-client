@@ -41,3 +41,16 @@ p {
 .indivisible {
   @apply font-['Indivisible'] tracking-tight;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 2px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(204, 204, 204);
+}
+::-webkit-scrollbar-thumb {
+  background-color: grey;
+  width: 4px;
+  height: 6px;
+}

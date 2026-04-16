@@ -3,7 +3,7 @@ import Form from "../../components/form";
 import Input from "../../components/input";
 import { Link } from "react-router";
 
-function SignUpPage() {
+function SignUp() {
   return (
     <>
       <h1 className="sm:mt-14 mt-20 mb-12">CREATE ACCOUNT</h1>
@@ -39,4 +39,4 @@ function SignUpPage() {
   );
 }
 
-export default SignUpPage;
+export default SignUp;

@@ -10,7 +10,7 @@ function Button({
   ...props
 }) {
   const base =
-    "flex items-center justify-center text-black px-4 py-3 rounded-sm transition";
+    "flex items-center justify-center gap-1 text-black px-4 py-3 rounded-sm";
 
   const variants = {
     primary: "bg-primary hover:bg-primary/80",

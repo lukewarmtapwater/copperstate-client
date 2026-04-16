@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Dropdown from "../../../components/dropdown";
-import roles from "../../../utils/roles";
-import formatDateTime from "../../../utils/formatDateTime";
-import request from "../../../utils/request";
-import DashboardSection from "../../../components/dashboard-section";
+import Dropdown from "../../components/dropdown";
+import roles from "../../utils/roles";
+import formatDateTime from "../../utils/formatDateTime";
+import request from "../../utils/request";
+import DashboardSection from "../../components/dashboard-section";
 
 function Users() {
   const [users, setUsers] = useState(null);

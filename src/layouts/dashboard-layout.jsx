@@ -1,5 +1,5 @@
 import { Outlet, useLoaderData } from "react-router";
-import Sidebar from "../pages/dashboard/sections/sidebar";
+import Sidebar from "../routes/dashboard/sidebar";
 import Logo from "../components/logo";
 
 function DashboardLayout() {

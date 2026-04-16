@@ -2,7 +2,7 @@ import Input from "../../components/input";
 import { Link } from "react-router";
 import Form from "../../components/form";
 
-function LoginPage() {
+function Login() {
   return (
     <>
       <h1 className="sm:mt-14 mt-20 mb-12">WELCOME BACK</h1>
@@ -31,4 +31,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Login;

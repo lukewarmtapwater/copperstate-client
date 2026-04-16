@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Logo from "../components/logo";
 
 export default function Index() {
   const [desktopMenu, setDesktopMenu] = useState(false);
@@ -20,9 +21,9 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="min-h-screen text-[#171717] bg-gradient-to-b from-white via-[#faf8f6] to-white font-sans">
+    <div className="min-h-screen text-[#171717] bg-gradient-to-b from-white via-[#faf8f6] to-white">
       {/* Announcement */}
-      <div className="bg-gradient-to-r from-[#8d4f1f] via-[#b66a2a] to-[#d17a2c] text-white font-bold text-sm">
+      <div className="bg-primary text-white text-sm">
         <div className="max-w-7xl mx-auto px-4 py-3 flex gap-3 justify-center text-center">
           <span>Announcement:</span>
           <span>
@@ -38,41 +39,32 @@ export default function Index() {
           <div className="flex items-center justify-between h-[78px]">
             {/* Brand */}
             <a href="#" className="flex items-center gap-3">
-              <div>
-                <strong className="block text-[1.02rem] leading-tight">
-                  Copperstate
-                </strong>
-                <span className="block text-xs uppercase text-gray-500 tracking-wider">
-                  Auto Wholesale
-                </span>
-              </div>
-              <div className="w-px h-8 bg-black/20" />
-              <div className="text-xs text-gray-500">by Motoren Automotive</div>
+              <Logo />
             </a>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex gap-2 items-center">
               <a
                 href="#inventory"
-                className="px-4 py-2 rounded-full border border-black/10"
+                className="px-4 py-2 rounded-sm border border-muted"
               >
                 Inventory
               </a>
               <a
                 href="#dealer-portal"
-                className="px-4 py-2 rounded-full border border-black/10"
+                className="px-4 py-2 rounded-sm border border-muted"
               >
                 Dealer Portal
               </a>
               <a
                 href="#employee-tools"
-                className="px-4 py-2 rounded-full border border-black/10"
+                className="px-4 py-2 rounded-sm border border-muted"
               >
                 Employee Tools
               </a>
               <a
                 href="#contact"
-                className="px-4 py-2 rounded-full border border-black/10"
+                className="px-4 py-2 rounded-sm border border-muted"
               >
                 Contact Us
               </a>
