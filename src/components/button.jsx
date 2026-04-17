@@ -1,16 +1,23 @@
 import { twMerge } from "tailwind-merge";
 import Loader from "../components/loader";
+import { useNavigation } from "react-router";
 
 function Button({
   children,
   variant = "primary",
   loading = false,
+  updateNavigationState = false,
   disabled = false,
   className = "",
   ...props
 }) {
+  const navigation = useNavigation();
+
+  const isLoading =
+    loading || (updateNavigationState && navigation.state === "submitting");
+
   const base =
-    "flex items-center justify-center gap-1 text-black px-4 py-3 rounded-sm";
+    "flex items-center justify-center gap-1 text-black px-3 py-3 rounded-sm";
 
   const variants = {
     primary: "bg-primary hover:bg-primary/80",
@@ -24,13 +31,13 @@ function Button({
       className={twMerge(
         base,
         variants[variant],
-        disabled || (loading && "opacity-80 cursor-not-allowed"),
+        (disabled || isLoading) && "opacity-80 cursor-not-allowed",
         className,
       )}
-      disabled={disabled || loading}
+      disabled={disabled || isLoading}
       {...props}
     >
-      {loading ? <Loader /> : children}
+      {isLoading ? <Loader /> : children}
     </button>
   );
 }

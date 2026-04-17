@@ -17,10 +17,10 @@ body {
   @apply indivisible;
 }
 h1 {
-  @apply text-[70px] condensed;
+  @apply text-[65px] leading-[55px] -my-2 condensed;
 }
 h2 {
-  @apply text-[45px] condensed;
+  @apply text-[45px] leading-[40px] condensed;
 }
 h3 {
   @apply text-[24px];
@@ -36,7 +36,7 @@ p {
 }
 
 .condensed {
-  @apply font-['Condensed'] leading-[60px] uppercase;
+  @apply font-['Condensed'] uppercase;
 }
 .indivisible {
   @apply font-['Indivisible'] tracking-tight;

@@ -4,37 +4,17 @@ import roles from "../../utils/roles";
 import formatDateTime from "../../utils/formatDateTime";
 import request from "../../utils/request";
 import DashboardSection from "../../components/dashboard-section";
+import Loader from "../../components/loader";
+import Button from "../../components/button";
 
-function Users() {
-  const [users, setUsers] = useState(null);
-  const [message, setMessage] = useState("Loading...");
-
-  useEffect(() => {
-    async function getUsers() {
-      const res = await request("/admin/users");
-      const result = await res.json();
-
-      if (res.ok) {
-        if (result.length) {
-          setUsers(result);
-        } else {
-          setMessage("No Users found.");
-        }
-      } else {
-        setMessage(result.error);
-      }
-    }
-
-    getUsers();
-  }, []);
-
+function Users({ users }) {
   return (
     <DashboardSection title="Manage Users">
       <div className="flex flex-col gap-4">
-        {users ? (
+        {users.length ? (
           users.map((user, i) => <User user={user} key={i} />)
         ) : (
-          <h4 className="text-foreground">{message}</h4>
+          <h4>No users found.</h4>
         )}
       </div>
     </DashboardSection>

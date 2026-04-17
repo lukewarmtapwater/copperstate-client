@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { RiArrowDownSLine, RiArrowUpSLine } from "@remixicon/react";
 import Button from "./button";
 
-function Dropdown({ options = [], value, onChange, placeholder }) {
+function Dropdown({ name, options = [], value, onChange, placeholder }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -19,7 +19,9 @@ function Dropdown({ options = [], value, onChange, placeholder }) {
 
   return (
     <div ref={ref} className="relative">
-      <Button onClick={() => setOpen((p) => !p)}>
+      <input type="hidden" name={name} value={value || ""} />
+
+      <Button type="button" onClick={() => setOpen((p) => !p)}>
         {value || placeholder}
         {open ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
       </Button>

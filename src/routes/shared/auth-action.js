@@ -11,7 +11,7 @@ async function authAction({ request }) {
 
   if (!res.ok) {
     const err = await res.json();
-    return { error: err.error };
+    return err;
   }
 
   return redirect("/dashboard");

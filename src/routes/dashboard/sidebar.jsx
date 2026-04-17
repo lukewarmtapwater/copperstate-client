@@ -6,81 +6,71 @@ import {
   RiBarChartLine,
 } from "@remixicon/react";
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router";
+import { NavLink, useLocation, useNavigate, useNavigation } from "react-router";
 import request from "../../utils/request";
 import Button from "../../components/button";
 import roles from "../../utils/roles";
+import Form from "../../components/form";
 
 function Sidebar({ user }) {
   return (
-    <div className="w-[230px] h-screen py-8 px-5 border-r border-muted flex flex-col">
-      <div>
-        <h4 className="-mb-1">{user.email.split("@")[0]}</h4>
-        <p className="text-sm">{roles[user.role]}</p>
+    <div className="w-[260px] h-screen py-8 px-4 border-r border-muted flex flex-col">
+      <div className="flex items-center gap-4">
+        <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#FFA211] via-[#FF6C00] to-[#D95A0F] "></div>
+        <div>
+          <h4 className="-mb-1">{user.email.split("@")[0]}</h4>
+          <p className="text-sm">{roles[user.role]}</p>
+        </div>
       </div>
 
-      <nav className="flex flex-col gap-2 mt-8 [&>h4]:text-xs [&>h4]:text-muted [&>h4]:my-3">
+      <nav className="flex flex-col gap-2 mt-6 [&>h4]:text-xs [&>h4]:text-foreground/50 [&>h4]:my-2">
         <h4>MENU</h4>
         <SidebarButton
           text="Dashboard"
           icon={<RiDashboardLine />}
           to="/dashboard"
         />
-        <SidebarButton
-          text="Inventory"
-          icon={<RiFileListLine />}
-          to="/inventory"
-        />
-        <SidebarButton text="Create Ticket" icon={<RiFileAddLine />} />
-        <h4>GENERAL</h4>
-        <SidebarButton text="Analytics" icon={<RiBarChartLine />} />
-        <SidebarButton text="Settings" icon={<RiSettings3Line />} />
+        {user.role !== 3 && (
+          <>
+            <SidebarButton
+              text="Inventory"
+              icon={<RiFileListLine />}
+              to="/inventory"
+            />
+            <SidebarButton
+              text="Create Ticket"
+              icon={<RiFileAddLine />}
+              to="/create-ticket"
+            />
+          </>
+        )}
       </nav>
-
-      <LogOutButton />
     </div>
   );
 }
 
 function SidebarButton({ text, icon, to }) {
-  const location = useLocation();
-  const isActive = location.pathname === to;
-
   return (
-    <Link
-      to={to}
-      className={`flex items-center gap-3 w-full px-4 py-3 rounded-sm hover:no-underline
-        ${
-          isActive
-            ? "text-primary bg-primary/10"
-            : "text-foreground hover:bg-subtle"
-        }`}
-    >
-      <div className="w-6 h-6 mb-[4px]">{icon}</div>
-      <span>{text}</span>
-    </Link>
-  );
-}
-
-function LogOutButton() {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
-
-  async function LogOut() {
-    setLoading(true);
-
-    const res = await request("/user/log-out");
-
-    if (res.ok) {
-      navigate("/login");
-    }
-    setLoading(false);
-  }
-
-  return (
-    <Button onClick={LogOut} className="mt-auto" loading={loading}>
-      Log Out
-    </Button>
+    <NavLink to={to} className="hover:no-underline">
+      {({ isActive, isPending }) => (
+        <Button
+          variant="ghost"
+          className={`w-full gap-3
+            ${
+              isActive
+                ? "text-primary hover:bg-primary/10 hover:text-primary"
+                : "text-foreground hover:bg-subtle"
+            }
+            ${!isPending && "justify-start"}
+          `}
+          loading={isPending}
+        >
+          {isActive && <div className="w-1 h-4 rounded-full bg-primary"></div>}
+          <div className="w-6 h-6 mb-[4px]">{icon}</div>
+          <span>{text}</span>
+        </Button>
+      )}
+    </NavLink>
   );
 }
 

@@ -1,41 +1,45 @@
 import CheckBox from "../../components/checkbox";
-import Form from "../../components/form";
+import Button from "../../components/button";
 import Input from "../../components/input";
-import { Link } from "react-router";
+import { Form, Link, useActionData } from "react-router";
 
 function SignUp() {
+  const data = useActionData();
+
   return (
-    <>
-      <h1 className="sm:mt-14 mt-20 mb-12">CREATE ACCOUNT</h1>
-      <Form>
-        <div className="flex flex-col gap-4">
-          <Input
-            id="email"
-            label="Email Address"
-            placeholder="example123@gmail.com"
-          />
-          <Input
-            id="password"
-            label="Password"
-            type="password"
-            placeholder="********"
-          />
-          <Input
-            id="repeat-password"
-            label="Repeat Password"
-            type="password"
-            placeholder="********"
-          />
-          <CheckBox
-            id="remember"
-            label="I agree to the terms and conditions."
-          />
+    <Form method="post" className="w-full flex flex-col gap-10">
+      <h1>CREATE ACCOUNT</h1>
+      <div>
+        <Input
+          id="email"
+          label="Email Address"
+          placeholder="example123@gmail.com"
+        />
+        <Input
+          id="password"
+          label="Password"
+          type="password"
+          placeholder="********"
+        />
+        <Input
+          id="repeatPassword"
+          label="Repeat Password"
+          type="password"
+          placeholder="********"
+        />
+      </div>
+      {data?.error && (
+        <div className="bg-subtle border border-muted py-3 px-3">
+          <p className="text-danger">{data.error}</p>
         </div>
-      </Form>
-      <p className="mt-3">
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </>
+      )}
+      <div>
+        <Button className="w-full">Sign Up</Button>
+        <p className="mt-3 text-center">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
+    </Form>
   );
 }
 

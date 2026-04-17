@@ -1,7 +1,7 @@
 import { redirect } from "react-router";
 import request from "../../utils/request";
 
-async function dashboardLoader() {
+async function userLoader() {
   const res = await request("/user/me");
 
   if (res.ok) {
@@ -11,4 +11,4 @@ async function dashboardLoader() {
   }
 }
 
-export default dashboardLoader;
+export default userLoader;

@@ -13,7 +13,9 @@ function DashboardLayout() {
           <Logo />
         </div>
 
-        <Outlet />
+        <div className="py-4">
+          <Outlet context={{ user }} />
+        </div>
       </div>
     </div>
   );

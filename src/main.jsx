@@ -7,14 +7,18 @@ import AccountLayout from "./layouts/account-layout";
 import "./index.css";
 import authAction from "./routes/shared/auth-action";
 import authLoader from "./routes/shared/auth-loader";
-import dashboardLoader from "./routes/dashboard/dashboard-loader";
 import DashboardLayout from "./layouts/dashboard-layout";
 import Dashboard from "./routes/dashboard/index";
 import Loader from "./components/loader";
 import Index from "./routes/index";
 import Inventory from "./routes/inventory/index";
+import userLoader from "./routes/dashboard/user-loader";
+import CreateTicket from "./routes/create-ticket";
+import ticketAction from "./routes/create-ticket/action";
+import inventoryLoader from "./routes/inventory/loader";
+import usersLoader from "./routes/dashboard/users-loader";
 
-const hydrateFallbackElement = <Loader className="mt-10" />;
+const loader = <Loader className="mt-10" />;
 const router = createBrowserRouter([
   {
     path: "",
@@ -22,38 +26,45 @@ const router = createBrowserRouter([
   },
   {
     Component: AccountLayout,
+    loader: authLoader,
     children: [
       {
         path: "login",
         Component: Login,
-        hydrateFallbackElement,
-        loader: authLoader,
+        hydrateFallbackElement: loader,
         action: authAction,
       },
       {
         path: "sign-up",
         Component: SignUp,
-        hydrateFallbackElement,
-        loader: authLoader,
+        hydrateFallbackElement: loader,
         action: authAction,
       },
     ],
   },
   {
+    id: "dashboard-layout",
     Component: DashboardLayout,
-    loader: dashboardLoader,
-    hydrateFallbackElement: <h4 className="m-4">Loading...</h4>,
+    loader: userLoader,
+    hydrateFallbackElement: loader,
     children: [
       {
         path: "dashboard",
-        loader: dashboardLoader,
-        hydrateFallbackElement,
+        hydrateFallbackElement: loader,
+        loader: usersLoader,
         Component: Dashboard,
       },
       {
         path: "inventory",
-        hydrateFallbackElement,
+        hydrateFallbackElement: loader,
+        loader: inventoryLoader,
         Component: Inventory,
+      },
+      {
+        path: "create-ticket",
+        hydrateFallbackElement: loader,
+        Component: CreateTicket,
+        action: ticketAction,
       },
     ],
   },
