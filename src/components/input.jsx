@@ -13,7 +13,7 @@ function Input({
   const error = data?.fieldErrors?.[id]?.[0];
 
   return (
-    <div className="w-full flex flex-col gap-2 text-foreground mt-3">
+    <div className="w-full flex flex-col gap-2 text-foreground">
       {label && (
         <label htmlFor={id}>
           {label}

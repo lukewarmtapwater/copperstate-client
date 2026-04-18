@@ -7,8 +7,8 @@ function Login() {
 
   return (
     <Form method="post" className="w-full flex flex-col gap-10">
-      <h1>WELCOME BACK</h1>
-      <div>
+      <h1>CREATE ACCOUNT</h1>
+      <div className="flex flex-col gap-4">
         <Input
           id="email"
           label="Email Address"
@@ -20,8 +20,15 @@ function Login() {
           type="password"
           placeholder="********"
         />
-        <p className="mt-2">
-          Forgot your password? <Link>Click here.</Link>
+        <Input
+          id="repeatPassword"
+          label="Repeat Password"
+          type="password"
+          placeholder="********"
+        />
+        <p>
+          By creating an account, you agree to our{" "}
+          <Link>Terms and Policies.</Link>
         </p>
       </div>
       {data?.error && (
@@ -34,7 +41,7 @@ function Login() {
           Login
         </Button>
         <p className="mt-3 text-center">
-          Don't have an account? <Link to="/sign-up">Create</Link>
+          Already have an account? <Link to="/login">Login</Link>
         </p>
       </div>
     </Form>

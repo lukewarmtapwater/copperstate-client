@@ -21,7 +21,7 @@ function Dropdown({ name, options = [], value, onChange, placeholder }) {
     <div ref={ref} className="relative">
       <input type="hidden" name={name} value={value || ""} />
 
-      <Button type="button" onClick={() => setOpen((p) => !p)}>
+      <Button type="button" className="py-2" onClick={() => setOpen((p) => !p)}>
         {value || placeholder}
         {open ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
       </Button>

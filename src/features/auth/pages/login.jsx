@@ -8,7 +8,7 @@ function Login() {
   return (
     <Form method="post" className="w-full flex flex-col gap-10">
       <h1>WELCOME BACK</h1>
-      <div>
+      <div className="flex flex-col gap-4">
         <Input
           id="email"
           label="Email Address"
@@ -20,7 +20,7 @@ function Login() {
           type="password"
           placeholder="********"
         />
-        <p className="mt-2">
+        <p>
           Forgot your password? <Link>Click here.</Link>
         </p>
       </div>
