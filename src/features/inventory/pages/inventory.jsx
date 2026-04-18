@@ -38,8 +38,8 @@ function Inventory() {
       </div>
 
       <DashboardSection title="Your Cars" className="flex flex-col gap-6">
-        {cars.length ? (
-          cars.map((car, i) => <Car car={car} key={i} />)
+        {yourCars.length ? (
+          yourCars.map((car, i) => <Car car={car} key={i} />)
         ) : (
           <p>No cars found.</p>
         )}
