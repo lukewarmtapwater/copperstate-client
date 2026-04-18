@@ -6,7 +6,7 @@ async function inventoryLoader() {
 
   if (res.ok) {
     const data = await res.json();
-    return data.cars;
+    return data;
   }
 
   return redirect("/dashboard");

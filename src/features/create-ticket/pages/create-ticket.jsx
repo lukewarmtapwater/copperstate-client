@@ -17,55 +17,43 @@ function CreateTicket() {
         description="Submit a ticket and track your request"
       >
         <DashboardSection title="General Information">
-          <div className="flex flex-col gap-4">
-            <div className="flex gap-3">
-              <Input type="number" id="year" label="Year" />
-              <Input id="make" label="Make" />
-              <Input id="model" label="Model" />
-            </div>
-            <div className="flex gap-3">
-              <Input id="location" label="Current Location" />
-              <Input type="number" id="daysOnLot" label="Days on Lot" />
-            </div>
+          <div className="flex gap-3">
+            <Input type="number" id="year" label="Year" />
+            <Input id="make" label="Make" />
+            <Input id="model" label="Model" />
+          </div>
+          <div className="flex gap-3 mt-4">
+            <Input id="location" label="Current Location" />
+            <Input type="number" id="daysOnLot" label="Days on Lot" />
           </div>
         </DashboardSection>
-        <DashboardSection title="Inspection">
-          <div className="flex flex-wrap gap-6">
-            <DropdownField
-              name="windshield"
-              text="Windshield"
-              options={["Needed", "Not Needed", "Ordered", "Invalid"]}
-            />
-            <DropdownField
-              name="rimDamage"
-              text="Rim Damage"
-              options={["Light", "Medium", "Severe"]}
-            />
-            <DropdownField
-              name="upholstery"
-              text="Upholstery"
-              options={["No Damage", "Medium", "Extreme"]}
-            />
-          </div>
+        <DashboardSection title="Inspection" className="flex flex-col gap-6">
+          <DropdownField
+            name="windshield"
+            text="Windshield"
+            options={["Needed", "Not Needed", "Ordered"]}
+          />
+          <DropdownField
+            name="rimDamage"
+            text="Rim Damage"
+            options={["Light", "Medium", "Severe"]}
+          />
+          <DropdownField
+            name="upholstery"
+            text="Upholstery"
+            options={["Light", "Medium", "Severe"]}
+          />
         </DashboardSection>
-        <DashboardSection title="Features">
-          <div className="flex flex-wrap gap-6">
-            <DropdownField
-              name="camera"
-              text="Camera"
-              options={["Yes", "No"]}
-            />
-            <DropdownField
-              name="steering"
-              text="Power Steering"
-              options={["Yes", "No"]}
-            />
-          </div>
+        <DashboardSection title="Features" className="flex flex-col gap-6">
+          <DropdownField name="camera" text="Camera" options={["Yes", "No"]} />
+          <DropdownField
+            name="steering"
+            text="Power Steering"
+            options={["Yes", "No"]}
+          />
         </DashboardSection>
 
-        <Button type="submit" className="w-max mt-4">
-          Create Ticket
-        </Button>
+        <Button>Create Ticket</Button>
       </DashboardContainer>
     </Form>
   );

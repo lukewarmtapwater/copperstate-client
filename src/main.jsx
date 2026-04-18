@@ -27,6 +27,7 @@ const router = createBrowserRouter([
   {
     Component: AccountLayout,
     loader: authLoader,
+    hydrateFallbackElement: loader,
     children: [
       {
         path: "login",

@@ -7,11 +7,10 @@ async function ticketAction({ request }) {
     method: "POST",
     body: data,
   });
+  const result = await res.json();
 
   if (!res.ok) {
-    const result = await res.json();
-    console.log(result);
-    return result.error;
+    return result;
   }
 
   return redirect("/inventory");

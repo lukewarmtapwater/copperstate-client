@@ -19,7 +19,7 @@ function Dashboard() {
       title="Dashboard"
       description="Manage users and inventory with full system oversight."
     >
-      <div className="flex gap-6">
+      <div className="flex flex-wrap gap-6">
         <NumberBox
           title="Employees"
           value={users.length}
