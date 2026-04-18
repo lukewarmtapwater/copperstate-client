@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Dropdown from "../../components/dropdown";
-import roles from "../../utils/roles";
-import formatDateTime from "../../utils/formatDateTime";
-import request from "../../utils/request";
-import DashboardSection from "../../components/dashboard-section";
-import Loader from "../../components/loader";
-import Button from "../../components/button";
+import Dropdown from "../../../components/dropdown";
+import roles from "../../../utils/roles";
+import formatDateTime from "../../../utils/formatDateTime";
+import request from "../../../utils/request";
+import DashboardSection from "../../../components/dashboard-section";
+import Loader from "../../../components/loader";
+import Button from "../../../components/button";
 
 function Users({ users }) {
   return (

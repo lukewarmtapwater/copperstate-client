@@ -3,12 +3,12 @@ import {
   useOutletContext,
   useRouteLoaderData,
 } from "react-router";
-import NoAccess from "./no-access";
-import DashboardSection from "../../components/dashboard-section";
-import Button from "../../components/button";
-import Users from "./users";
-import NumberBox from "../../components/number-box";
-import DashboardContainer from "../../components/dashboard-container";
+import NoAccess from "../components/no-access";
+import DashboardSection from "../../../components/dashboard-section";
+import Button from "../../../components/button";
+import Users from "../components/users";
+import NumberBox from "../../../components/number-box";
+import DashboardContainer from "../../../components/dashboard-container";
 
 function Dashboard() {
   const { user } = useOutletContext();

@@ -1,11 +1,11 @@
-import Checkbox from "../../components/checkbox";
-import Input from "../../components/input";
-import DashboardSection from "../../components/dashboard-section";
-import Dropdown from "../../components/dropdown";
+import Checkbox from "../../../components/checkbox";
+import Input from "../../../components/input";
+import DashboardSection from "../../../components/dashboard-section";
+import Dropdown from "../../../components/dropdown";
 import { Form, useActionData } from "react-router";
 import { useState } from "react";
-import Button from "../../components/button";
-import DashboardContainer from "../../components/dashboard-container";
+import Button from "../../../components/button";
+import DashboardContainer from "../../../components/dashboard-container";
 
 function CreateTicket() {
   const data = useActionData();
@@ -40,11 +40,6 @@ function CreateTicket() {
               name="rimDamage"
               text="Rim Damage"
               options={["Light", "Medium", "Severe"]}
-            />
-            <DropdownField
-              name="withCamera"
-              text="withCamera"
-              options={["Yes", "No"]}
             />
             <DropdownField
               name="upholstery"

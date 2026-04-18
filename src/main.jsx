@@ -1,22 +1,22 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
-import Login from "./routes/login/index";
-import SignUp from "./routes/sign-up/index";
-import AccountLayout from "./layouts/account-layout";
+import Login from "./features/auth/pages/login";
+import SignUp from "./features/auth/pages/sign-up";
+import AccountLayout from "./features/auth/layouts/account-layout";
 import "./index.css";
-import authAction from "./routes/shared/auth-action";
-import authLoader from "./routes/shared/auth-loader";
-import DashboardLayout from "./layouts/dashboard-layout";
-import Dashboard from "./routes/dashboard/index";
+import authAction from "./features/auth/actions/auth-action";
+import authLoader from "./features/auth/loaders/auth-loader";
+import DashboardLayout from "./features/dashboard/layouts/dashboard-layout";
+import Dashboard from "./features/dashboard/pages/dashboard";
 import Loader from "./components/loader";
-import Index from "./routes/index";
-import Inventory from "./routes/inventory/index";
-import userLoader from "./routes/dashboard/user-loader";
-import CreateTicket from "./routes/create-ticket";
-import ticketAction from "./routes/create-ticket/action";
-import inventoryLoader from "./routes/inventory/loader";
-import usersLoader from "./routes/dashboard/users-loader";
+import Index from "./features/index";
+import Inventory from "./features/inventory/pages/inventory";
+import userLoader from "./features/dashboard/loaders/user-loader";
+import CreateTicket from "./features/create-ticket/pages/create-ticket";
+import ticketAction from "./features/create-ticket/actions/ticket-action";
+import inventoryLoader from "./features/inventory/loaders/loader";
+import usersLoader from "./features/dashboard/loaders/users-loader";
 
 const loader = <Loader className="mt-10" />;
 const router = createBrowserRouter([

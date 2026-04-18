@@ -1,5 +1,5 @@
 import { redirect } from "react-router";
-import requestUtil from "../../utils/request";
+import requestUtil from "../../../utils/request";
 
 async function authAction({ request }) {
   const data = Object.fromEntries(await request.formData());

@@ -1,5 +1,5 @@
 import { Outlet, useActionData } from "react-router";
-import Logo from "../components/logo";
+import Logo from "../../../components/logo";
 
 function AccountLayout() {
   return (

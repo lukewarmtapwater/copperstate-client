@@ -1,11 +1,11 @@
-import Button from "../../components/button";
-import Dropdown from "../../components/dropdown";
-import DashboardSection from "../../components/dashboard-section";
+import Button from "../../../components/button";
+import Dropdown from "../../../components/dropdown";
+import DashboardSection from "../../../components/dashboard-section";
 import { RiArrowDropRightLine } from "@remixicon/react";
 import { useLoaderData } from "react-router";
-import formatDateTime from "../../utils/formatDateTime";
-import NumberBox from "../../components/number-box";
-import DashboardContainer from "../../components/dashboard-container";
+import formatDateTime from "../../../utils/formatDateTime";
+import NumberBox from "../../../components/number-box";
+import DashboardContainer from "../../../components/dashboard-container";
 
 function Inventory() {
   const cars = useLoaderData();

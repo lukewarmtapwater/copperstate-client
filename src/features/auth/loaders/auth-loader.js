@@ -1,5 +1,5 @@
 import { redirect } from "react-router";
-import request from "../../utils/request";
+import request from "../../../utils/request";
 
 async function authLoader() {
   const res = await request("/user/me");

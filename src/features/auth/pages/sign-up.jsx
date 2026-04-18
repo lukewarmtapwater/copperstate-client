@@ -1,6 +1,6 @@
-import Input from "../../components/input";
+import Input from "../../../components/input";
 import { Form, Link, useActionData } from "react-router";
-import Button from "../../components/button";
+import Button from "../../../components/button";
 
 function Login() {
   const data = useActionData();

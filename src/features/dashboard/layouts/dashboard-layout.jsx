@@ -1,6 +1,6 @@
 import { Outlet, useLoaderData } from "react-router";
-import Sidebar from "../routes/dashboard/sidebar";
-import Logo from "../components/logo";
+import Sidebar from "../components/sidebar";
+import Logo from "../../../components/logo";
 
 function DashboardLayout() {
   const user = useLoaderData();

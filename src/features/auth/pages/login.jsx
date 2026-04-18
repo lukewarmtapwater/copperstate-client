@@ -1,14 +1,13 @@
-import CheckBox from "../../components/checkbox";
-import Button from "../../components/button";
-import Input from "../../components/input";
+import Input from "../../../components/input";
 import { Form, Link, useActionData } from "react-router";
+import Button from "../../../components/button";
 
-function SignUp() {
+function Login() {
   const data = useActionData();
 
   return (
     <Form method="post" className="w-full flex flex-col gap-10">
-      <h1>CREATE ACCOUNT</h1>
+      <h1>WELCOME BACK</h1>
       <div>
         <Input
           id="email"
@@ -21,12 +20,9 @@ function SignUp() {
           type="password"
           placeholder="********"
         />
-        <Input
-          id="repeatPassword"
-          label="Repeat Password"
-          type="password"
-          placeholder="********"
-        />
+        <p className="mt-2">
+          Forgot your password? <Link>Click here.</Link>
+        </p>
       </div>
       {data?.error && (
         <div className="bg-subtle border border-muted py-3 px-3">
@@ -34,13 +30,15 @@ function SignUp() {
         </div>
       )}
       <div>
-        <Button className="w-full">Sign Up</Button>
+        <Button className="w-full" updateNavigationState={true}>
+          Login
+        </Button>
         <p className="mt-3 text-center">
-          Already have an account? <Link to="/login">Login</Link>
+          Don't have an account? <Link to="/sign-up">Create</Link>
         </p>
       </div>
     </Form>
   );
 }
 
-export default SignUp;
+export default Login;
