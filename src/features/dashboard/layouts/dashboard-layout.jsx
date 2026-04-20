@@ -4,6 +4,8 @@ import Logo from "../../../components/logo";
 import { useState } from "react";
 import { RiMenuLine } from "@remixicon/react";
 
+// weak component
+
 function DashboardLayout() {
   const user = useLoaderData();
   const [sidebar, setSidebar] = useState(true);

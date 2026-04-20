@@ -14,6 +14,8 @@ import request from "../../../utils/request";
 import Button from "../../../components/button";
 import roles from "../../../utils/roles";
 
+// no issues
+
 function Sidebar({ user, sidebar, setSidebar }) {
   return (
     sidebar && (
@@ -77,7 +79,7 @@ function SidebarButton({ text, icon, to }) {
         >
           {isActive && <div className="w-1 h-4 rounded-full bg-primary"></div>}
           <div className="w-6 h-6 mb-[4px]">{icon}</div>
-          <span>{text}</span>
+          {text}
         </Button>
       )}
     </NavLink>

@@ -7,6 +7,8 @@ import { useState } from "react";
 import Button from "../../../components/button";
 import DashboardContainer from "../../../components/dashboard-container";
 
+// repetition, weak component overall.
+
 function CreateTicket() {
   const data = useActionData();
 
@@ -22,32 +24,38 @@ function CreateTicket() {
             <Input id="make" label="Make" />
             <Input id="model" label="Model" />
           </div>
-          <div className="flex gap-3 mt-4">
+          <div className="flex gap-3 mt-3">
             <Input id="location" label="Current Location" />
             <Input type="number" id="daysOnLot" label="Days on Lot" />
           </div>
         </DashboardSection>
-        <DashboardSection title="Inspection" className="flex flex-col gap-6">
+        <DashboardSection
+          title="Inspection"
+          parentClassName="flex flex-wrap gap-6"
+        >
           <DropdownField
-            name="windshield"
+            id="windshield"
             text="Windshield"
             options={["Needed", "Not Needed", "Ordered"]}
           />
           <DropdownField
-            name="rimDamage"
+            id="rimDamage"
             text="Rim Damage"
             options={["Light", "Medium", "Severe"]}
           />
           <DropdownField
-            name="upholstery"
+            id="upholstery"
             text="Upholstery"
             options={["Light", "Medium", "Severe"]}
           />
         </DashboardSection>
-        <DashboardSection title="Features" className="flex flex-col gap-6">
-          <DropdownField name="camera" text="Camera" options={["Yes", "No"]} />
+        <DashboardSection
+          title="Features"
+          parentClassName="flex flex-wrap gap-6"
+        >
+          <DropdownField id="camera" text="Camera" options={["Yes", "No"]} />
           <DropdownField
-            name="steering"
+            id="steering"
             text="Power Steering"
             options={["Yes", "No"]}
           />
@@ -59,7 +67,7 @@ function CreateTicket() {
   );
 }
 
-function DropdownField({ name, text, error = "", value, options }) {
+function DropdownField({ id, text, value, options }) {
   const [v, setValue] = useState(value || options[0]);
 
   function handleChange(newValue) {
@@ -69,17 +77,9 @@ function DropdownField({ name, text, error = "", value, options }) {
   return (
     <div className="flex items-center justify-between gap-4">
       <div>
-        <h4 className="text-foreground">
-          {text} <span className="text-danger">*</span>
-        </h4>
-        {error && <p className="text-danger text-sm">{error}</p>}
+        <p>{text}</p>
       </div>
-      <Dropdown
-        name={name}
-        value={v}
-        options={options}
-        onChange={handleChange}
-      />
+      <Dropdown id={id} value={v} options={options} onChange={handleChange} />
     </div>
   );
 }

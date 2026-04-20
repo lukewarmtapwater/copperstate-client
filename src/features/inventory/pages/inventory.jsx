@@ -6,12 +6,14 @@ import { useLoaderData } from "react-router";
 import formatDateTime from "../../../utils/formatDateTime";
 import NumberBox from "../../../components/number-box";
 import DashboardContainer from "../../../components/dashboard-container";
+import Car from "../../../components/car";
+
+// no issues
 
 function Inventory() {
   const { cars, user } = useLoaderData();
   const today = new Date().toDateString();
 
-  const yourCars = cars.filter((car) => car.postedBy === user.email);
   const createdToday = cars.filter(
     (car) => new Date(car.createdOn).toDateString() === today,
   ).length;
@@ -37,69 +39,17 @@ function Inventory() {
         />
       </div>
 
-      <DashboardSection title="Your Cars" className="flex flex-col gap-6">
-        {yourCars.length ? (
-          yourCars.map((car, i) => <Car car={car} key={i} />)
-        ) : (
-          <p>No cars found.</p>
-        )}
-      </DashboardSection>
-
       <DashboardSection
         title="Cars in Inventory"
-        className="flex flex-col gap-6"
+        parentClassName="flex flex-col gap-6"
       >
-        {yourCars.length ? (
-          yourCars.map((car, i) => <Car car={car} key={i} />)
+        {cars.length ? (
+          cars.map((car, i) => <Car car={car} key={i} />)
         ) : (
           <p>No cars found.</p>
         )}
       </DashboardSection>
     </DashboardContainer>
-  );
-}
-
-function Car({ car }) {
-  return (
-    <div className="sm:flex justify-between bg-background border border-muted p-6 rounded-md">
-      <div className="mb-10 sm:mb-0">
-        <h4>
-          {car.make} {car.model} {car.year}
-        </h4>
-        <div className="flex flex-wrap gap-4 sm:gap-16 mt-4 ml-1">
-          <div>
-            <h5 className="my-2">General</h5>
-            <div className="ml-1">
-              <p>ID: {car._id}</p>
-              <p>Created on: {formatDateTime(car.createdOn)}</p>
-              <p>Location: {car.location}</p>
-            </div>
-          </div>
-          <div>
-            <h5 className="my-2">Inspection</h5>
-            <div>
-              <p>Rim damage: {car.rimDamage}</p>
-              <p>Windshield: {car.windshield}</p>
-            </div>
-          </div>
-          <div>
-            <h5 className="my-2">Features</h5>
-            <div>
-              <p>Camera: {car.camera}</p>
-              <p>Power Steering: {car.steering}</p>
-            </div>
-          </div>
-        </div>
-        <p className="mt-6">
-          Posted by <span className="text-black">{car.postedBy}</span>
-        </p>
-      </div>
-      <div className="flex flex-col gap-4">
-        <Button>
-          Open <RiArrowDropRightLine />
-        </Button>
-      </div>
-    </div>
   );
 }
 

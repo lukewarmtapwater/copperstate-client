@@ -2,7 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { RiArrowDownSLine, RiArrowUpSLine } from "@remixicon/react";
 import Button from "./button";
 
-function Dropdown({ name, options = [], value, onChange, placeholder }) {
+// Button having unique className
+
+function Dropdown({ id, options, value, onChange, placeholder = "" }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -19,7 +21,7 @@ function Dropdown({ name, options = [], value, onChange, placeholder }) {
 
   return (
     <div ref={ref} className="relative">
-      <input type="hidden" name={name} value={value || ""} />
+      <input type="hidden" id={id} name={id} value={value} />
 
       <Button type="button" className="py-2" onClick={() => setOpen((p) => !p)}>
         {value || placeholder}

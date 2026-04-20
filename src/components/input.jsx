@@ -1,12 +1,14 @@
 import { useActionData } from "react-router";
 import { twMerge } from "tailwind-merge";
 
+// No issues
+
 function Input({
   id,
   label,
-  placeholder,
+  placeholder = "",
   required = true,
-  className,
+  className = "",
   ...props
 }) {
   const data = useActionData();

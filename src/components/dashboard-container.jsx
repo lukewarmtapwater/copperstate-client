@@ -1,4 +1,6 @@
-function DashboardContainer({ title, description, children }) {
+// No issues
+
+function DashboardContainer({ title, description = "", children }) {
   return (
     <div className="flex flex-col gap-6">
       <h1>{title}</h1>

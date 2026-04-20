@@ -15,8 +15,10 @@ import Inventory from "./features/inventory/pages/inventory";
 import userLoader from "./features/dashboard/loaders/user-loader";
 import CreateTicket from "./features/create-ticket/pages/create-ticket";
 import ticketAction from "./features/create-ticket/actions/ticket-action";
-import inventoryLoader from "./features/inventory/loaders/loader";
+import inventoryLoader from "./features/inventory/loaders/inventory-loader";
 import usersLoader from "./features/dashboard/loaders/users-loader";
+import User from "./features/users/pages/user";
+import UserDataLoader from "./features/users/loaders/user-data-loader";
 
 const loader = <Loader className="mt-10" />;
 const router = createBrowserRouter([
@@ -66,6 +68,11 @@ const router = createBrowserRouter([
         hydrateFallbackElement: loader,
         Component: CreateTicket,
         action: ticketAction,
+      },
+      {
+        path: ":userId",
+        Component: User,
+        loader: UserDataLoader,
       },
     ],
   },

@@ -2,13 +2,17 @@ import Input from "../../../components/input";
 import { Form, Link, useActionData } from "react-router";
 import Button from "../../../components/button";
 
-function Login() {
+// no issues on this component
+
+// A group issue in login.jsx and sign-up.jsx is the code repetition.
+
+function SignUp() {
   const data = useActionData();
 
   return (
     <Form method="post" className="w-full flex flex-col gap-10">
       <h1>CREATE ACCOUNT</h1>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-3">
         <Input
           id="email"
           label="Email Address"
@@ -30,12 +34,12 @@ function Login() {
           By creating an account, you agree to our{" "}
           <Link>Terms and Policies.</Link>
         </p>
+        {data?.error && (
+          <div className="bg-subtle border border-muted py-3 px-3">
+            <p className="text-danger">{data.error}</p>
+          </div>
+        )}
       </div>
-      {data?.error && (
-        <div className="bg-subtle border border-muted py-3 px-3">
-          <p className="text-danger">{data.error}</p>
-        </div>
-      )}
       <div>
         <Button className="w-full" updateNavigationState={true}>
           Login
@@ -48,4 +52,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default SignUp;

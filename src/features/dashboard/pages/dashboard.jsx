@@ -10,6 +10,8 @@ import Users from "../components/users";
 import NumberBox from "../../../components/number-box";
 import DashboardContainer from "../../../components/dashboard-container";
 
+// no issues
+
 function Dashboard() {
   const { user } = useOutletContext();
   const users = useLoaderData();
@@ -19,23 +21,29 @@ function Dashboard() {
       title="Dashboard"
       description="Manage users and inventory with full system oversight."
     >
-      <div className="flex flex-wrap gap-6">
-        <NumberBox
-          title="Employees"
-          value={users.length}
-          footer="0 users registered today."
-        />
-        <NumberBox
-          title="Total Cars"
-          footer="Increased 20% from last week."
-          value={25}
-        />
+      <div className="flex gap-6">
+        {user.role === 0 && (
+          <NumberBox
+            title="Employees"
+            value={users.length}
+            footer="0 users registered today."
+          />
+        )}
+        {user.role !== 3 && (
+          <>
+            <NumberBox
+              title="Total Cars"
+              footer="Increased 20% from last week."
+              value={25}
+            />
 
-        <NumberBox
-          title="Cars Awaiting Inspection"
-          footer="Decreased 50% from yesterday."
-          value={13}
-        />
+            <NumberBox
+              title="Cars Awaiting Inspection"
+              footer="Decreased 50% from yesterday."
+              value={13}
+            />
+          </>
+        )}
       </div>
 
       {user.role === 0 && <Users users={users} />}

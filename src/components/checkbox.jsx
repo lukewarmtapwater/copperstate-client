@@ -1,12 +1,14 @@
-function CheckBox({ id, label, checked, onChange, className, ...props }) {
+// No issues
+// ID = Name
+// ID should be camel case
+
+function CheckBox({ id, label, className = "", ...props }) {
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
       <input
         type="checkbox"
         id={id}
         name={id}
-        checked={checked}
-        onChange={onChange}
         className="w-4 h-4 accent-primary cursor-pointer mb-[3px]"
         {...props}
       />
