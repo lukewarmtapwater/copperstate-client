@@ -9,7 +9,7 @@ module.exports = {
         primary: "#FF6C08",
         foreground: colors.gray[500],
         muted: colors.gray[300],
-        subtle: colors.gray[100],
+        subtle: colors.gray[50],
         background: colors.white,
         success: colors.green[500],
         danger: colors.red[500],

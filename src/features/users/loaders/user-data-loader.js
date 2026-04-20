@@ -7,8 +7,6 @@ async function UserDataLoader({ params }) {
 
   if (res.ok) {
     const userData = await res.json();
-
-    console.log(userData);
     return userData;
   }
 

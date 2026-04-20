@@ -14,7 +14,10 @@ function DashboardSection({
 }) {
   return (
     <div
-      className={`bg-subtle rounded-md px-8 py-8 border border-muted ml-0 ${sectionclassName}`}
+      className={twMerge(
+        "bg-subtle rounded-md px-8 py-8 border shadow-sm border-muted ml-0",
+        sectionclassName,
+      )}
       {...props}
     >
       {title && (
