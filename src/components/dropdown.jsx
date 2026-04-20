@@ -4,7 +4,14 @@ import Button from "./button";
 
 // Button having unique className
 
-function Dropdown({ id, options, value, onChange, placeholder = "" }) {
+function Dropdown({
+  id,
+  options,
+  value,
+  onChange,
+  updateNavigationState = false,
+  placeholder = "",
+}) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
@@ -23,13 +30,18 @@ function Dropdown({ id, options, value, onChange, placeholder = "" }) {
     <div ref={ref} className="relative">
       <input type="hidden" id={id} name={id} value={value} />
 
-      <Button type="button" className="py-2" onClick={() => setOpen((p) => !p)}>
+      <Button
+        type="button"
+        className="py-2"
+        updateNavigationState={updateNavigationState}
+        onClick={() => setOpen((p) => !p)}
+      >
         {value || placeholder}
         {open ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
       </Button>
 
       {open && (
-        <div className="absolute mt-2 z-50 w-max max-h-80 overflow-y-auto border border-muted rounded-md bg-background">
+        <div className="absolute mt-2 w-max max-h-80 overflow-y-auto border border-muted rounded-md bg-background">
           {options.map((opt) => (
             <div
               key={opt}

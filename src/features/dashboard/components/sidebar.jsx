@@ -19,7 +19,7 @@ import roles from "../../../utils/roles";
 function Sidebar({ user, sidebar, setSidebar }) {
   return (
     sidebar && (
-      <div className="absolute bg-white sm:static w-[260px] h-screen py-8 px-4 border-r border-muted flex flex-col">
+      <div className="z-50 absolute bg-white sm:static w-[260px] h-screen py-8 px-4 border-r border-muted flex flex-col">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#FFA211] via-[#FF6C00] to-[#D95A0F] "></div>

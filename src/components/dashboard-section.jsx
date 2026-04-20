@@ -1,33 +1,47 @@
 import { twMerge } from "tailwind-merge";
-
-// Where to use the className, on the section div or the parent div?
-// solution: seperate className props for each div
+import { useState } from "react";
+import Button from "../components/button";
+import { RiArrowUpSLine, RiArrowDownSLine } from "@remixicon/react";
 
 function DashboardSection({
   title,
   header = <></>,
-  footer = "",
   children,
+  expandable = true,
   sectionclassName = "",
   parentClassName = "",
   ...props
 }) {
+  const [expanded, setExpanded] = useState(true);
+
   return (
     <div
       className={twMerge(
-        "bg-subtle rounded-md px-8 py-8 border shadow-sm border-muted ml-0",
+        "flex flex-col gap-8 bg-subtle shadow-md rounded-md px-8 py-8 border border-muted ml-0",
         sectionclassName,
       )}
       {...props}
     >
       {title && (
-        <div className="flex justify-between items-center mb-8">
+        <div className="flex justify-between items-center">
           <h3>{title}</h3>
-          {header}
+
+          <div className="flex items-center gap-2">
+            {header}
+            {expandable && (
+              <Button
+                variant="ghost"
+                type="button"
+                onClick={() => setExpanded((prev) => !prev)}
+              >
+                {expanded ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
+              </Button>
+            )}
+          </div>
         </div>
       )}
-      <div className={parentClassName}>{children}</div>
-      {footer && <p className="mt-2">{footer}</p>}
+
+      {expanded && <div className={parentClassName}>{children}</div>}
     </div>
   );
 }

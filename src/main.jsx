@@ -19,6 +19,7 @@ import inventoryLoader from "./features/inventory/loaders/inventory-loader";
 import usersLoader from "./features/dashboard/loaders/users-loader";
 import User from "./features/users/pages/user";
 import UserDataLoader from "./features/users/loaders/user-data-loader";
+import ChangeRoleAction from "./features/users/actions/change-role-action";
 
 const loader = <Loader className="mt-10" />;
 const router = createBrowserRouter([
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
       {
         path: ":userId",
         Component: User,
+        action: ChangeRoleAction,
         loader: UserDataLoader,
       },
     ],

@@ -46,22 +46,4 @@ function User({ user }) {
   );
 }
 
-//  const [role, setRole] = useState(roles[user.role]);
-
-//   async function handleRoleChange(newRole) {
-//     const previousRole = role;
-//     setRole(newRole);
-
-//     const res = await request("/admin/change-role", {
-//       method: "POST",
-//       body: {
-//         userEmail: user.email,
-//         role: roles.indexOf(newRole),
-//       },
-//     });
-
-//     if (!res.ok) {
-//       setRole(previousRole);
-//     }
-
 export default Users;
