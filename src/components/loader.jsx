@@ -1,5 +1,3 @@
-// No issues
-
 function Loader({ className = "" }) {
   return (
     <div className="flex items-center justify-center">

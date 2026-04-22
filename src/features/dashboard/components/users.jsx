@@ -1,15 +1,8 @@
-import { useEffect, useState } from "react";
-import Dropdown from "../../../components/dropdown";
 import roles from "../../../utils/roles";
 import formatDateTime from "../../../utils/formatDateTime";
-import request from "../../../utils/request";
 import DashboardSection from "../../../components/dashboard-section";
-import Loader from "../../../components/loader";
-import Button from "../../../components/button";
-import { NavLink } from "react-router";
 import { RiArrowDropRightLine } from "@remixicon/react";
-
-// navLink, navigation button issues.
+import NavButton from "../../../components/nav-button";
 
 function Users({ users }) {
   return (
@@ -28,20 +21,17 @@ function Users({ users }) {
 
 function User({ user }) {
   return (
-    <div className="sm:flex justify-between bg-background border border-muted p-6 rounded-md">
+    <div className="flex flex-col sm:flex-row justify-between gap-6 bg-background border border-muted py-6 px-4 rounded-md">
       <div>
         <h4>{user.email}</h4>
-        <div className="mt-4 ml-1">
+        <div className="mt-6 ml-2">
           <p>Role: {roles[user.role]}</p>
           <p>Last login {formatDateTime(user.lastLogin)}</p>
         </div>
       </div>
-
-      <NavLink to={`/${user._id}`}>
-        <Button>
-          Open <RiArrowDropRightLine />
-        </Button>
-      </NavLink>
+      <NavButton to={`/user/${user._id}`}>
+        Open Details <RiArrowDropRightLine />
+      </NavButton>
     </div>
   );
 }

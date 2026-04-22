@@ -1,8 +1,6 @@
 import { redirect } from "react-router";
 import request from "../../../utils/request";
 
-// No issues
-
 async function authLoader() {
   const res = await request("/users/me");
 

@@ -1,70 +1,75 @@
-import {
-  useActionData,
-  useLoaderData,
-  useRouteLoaderData,
-  useSubmit,
-} from "react-router";
+import { useLoaderData, useRouteLoaderData, useSubmit } from "react-router";
 import DashboardSection from "../../../components/dashboard-section";
 import DashboardContainer from "../../../components/dashboard-container";
 import formatDateTime from "../../../utils/formatDateTime";
 import Dropdown from "../../../components/dropdown";
 import roles from "../../../utils/roles";
-import Button from "../../../components/button";
 import Car from "../../../components/car";
-import request from "../../../utils/request";
+import DataItem from "../../../components/data-item";
 import { useState } from "react";
+import {
+  RiAdminLine,
+  RiCalendarView,
+  RiIdCardLine,
+  RiMailLine,
+} from "@remixicon/react";
 
 function User() {
   const currentUser = useRouteLoaderData("dashboard-layout");
   const { cars, user } = useLoaderData();
   const submit = useSubmit();
-  const result = useActionData();
-
   const [role, setRole] = useState(roles[user.role]);
 
   async function handleChange(newRole) {
     await submit({ newRole, userId: user._id }, { method: "post" });
-    if (result) setRole(result);
+    setRole(newRole);
   }
 
   return (
-    <DashboardContainer title={user.email.split("@")[0]}>
+    <DashboardContainer title="User Details">
       <DashboardSection
         title="Details"
         header={
           currentUser.role === 0 && (
-            <div className="flex gap-3">
+            <>
               <Dropdown
                 value={role}
                 options={roles}
                 onChange={handleChange}
                 updateNavigationState={true}
               />
-            </div>
+            </>
           )
         }
-        parentClassName="text-foreground"
       >
-        <p>
-          System assigned ID: <span>{user._id}</span>
-        </p>
-        <p>
-          Email: <span>{user.email}</span>
-        </p>
-        <p>
-          Role: <span>{roles[user.role]}</span>
-        </p>
-        <p>
-          Account created on <span>{formatDateTime(user.accountCreated)}</span>
-        </p>
-        <p>
-          Last login <span>{formatDateTime(user.lastLogin)}</span>
-        </p>
+        <DataItem
+          text="Email"
+          Icon={RiMailLine}
+          value={user.email}
+          first={true}
+        />
+        <DataItem
+          text="System Assigned ID"
+          Icon={RiIdCardLine}
+          value={user._id}
+        />
+        <DataItem text="Role" Icon={RiAdminLine} value={roles[user.role]} />
+        <DataItem
+          text="Created on"
+          Icon={RiCalendarView}
+          value={formatDateTime(user.accountCreated)}
+        />
+        <DataItem
+          text="Last Login"
+          Icon={RiCalendarView}
+          value={formatDateTime(user.lastLogin)}
+          last={true}
+        />
       </DashboardSection>
 
       <DashboardSection
-        title="Cars in Inventory"
-        parentClassName="flex flex-col gap-6"
+        title="Cars Posted"
+        parentClassName="flex flex-col gap-4"
       >
         {cars.length ? (
           cars.map((car, i) => <Car car={car} key={i} />)

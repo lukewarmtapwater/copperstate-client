@@ -2,8 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { RiArrowDownSLine, RiArrowUpSLine } from "@remixicon/react";
 import Button from "./button";
 
-// Button having unique className
-
 function Dropdown({
   id,
   options,
@@ -13,7 +11,7 @@ function Dropdown({
   placeholder = "",
 }) {
   const [open, setOpen] = useState(false);
-  const ref = useRef(null);
+  const ref = useRef();
 
   useEffect(() => {
     function handleClickOutside(e) {
@@ -32,7 +30,6 @@ function Dropdown({
 
       <Button
         type="button"
-        className="py-2"
         updateNavigationState={updateNavigationState}
         onClick={() => setOpen((p) => !p)}
       >
@@ -41,7 +38,7 @@ function Dropdown({
       </Button>
 
       {open && (
-        <div className="absolute mt-2 w-max max-h-80 overflow-y-auto border border-muted rounded-md bg-background">
+        <div className="z-[50] absolute mt-2 w-max max-h-80 overflow-y-auto border border-muted rounded-md bg-background">
           {options.map((opt) => (
             <div
               key={opt}

@@ -20,6 +20,8 @@ import usersLoader from "./features/dashboard/loaders/users-loader";
 import User from "./features/users/pages/user";
 import UserDataLoader from "./features/users/loaders/user-data-loader";
 import ChangeRoleAction from "./features/users/actions/change-role-action";
+import Car from "./features/cars/pages/car";
+import CarLoader from "./features/cars/loaders/car-loader";
 
 const loader = <Loader className="mt-10" />;
 const router = createBrowserRouter([
@@ -35,14 +37,14 @@ const router = createBrowserRouter([
       {
         path: "login",
         Component: Login,
-        hydrateFallbackElement: loader,
         action: authAction,
+        hydrateFallbackElement: loader,
       },
       {
         path: "sign-up",
         Component: SignUp,
-        hydrateFallbackElement: loader,
         action: authAction,
+        hydrateFallbackElement: loader,
       },
     ],
   },
@@ -71,10 +73,15 @@ const router = createBrowserRouter([
         action: ticketAction,
       },
       {
-        path: ":userId",
+        path: "/user/:userId",
         Component: User,
         action: ChangeRoleAction,
         loader: UserDataLoader,
+      },
+      {
+        path: "/inventory/:carId",
+        Component: Car,
+        loader: CarLoader,
       },
     ],
   },

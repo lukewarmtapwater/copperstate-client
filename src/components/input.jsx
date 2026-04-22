@@ -1,8 +1,6 @@
 import { useActionData } from "react-router";
 import { twMerge } from "tailwind-merge";
 
-// No issues
-
 function Input({
   id,
   label,
@@ -15,7 +13,7 @@ function Input({
   const error = data?.fieldErrors?.[id]?.[0];
 
   return (
-    <div className="w-full flex flex-col gap-2 text-foreground">
+    <div className="w-full flex flex-col gap-1 text-foreground">
       {label && (
         <label htmlFor={id}>
           {label}
@@ -34,7 +32,7 @@ function Input({
         placeholder={placeholder || label}
         {...props}
       />
-      {error && <p className="text-danger text-sm">{error}</p>}
+      {error && <p className="text-danger">{error}</p>}
     </div>
   );
 }

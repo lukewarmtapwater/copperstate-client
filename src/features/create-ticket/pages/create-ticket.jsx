@@ -1,37 +1,35 @@
-import Checkbox from "../../../components/checkbox";
 import Input from "../../../components/input";
 import DashboardSection from "../../../components/dashboard-section";
 import Dropdown from "../../../components/dropdown";
-import { Form, useActionData } from "react-router";
+import { Form } from "react-router";
 import { useState } from "react";
 import Button from "../../../components/button";
 import DashboardContainer from "../../../components/dashboard-container";
 
-// repetition, weak component overall.
-
 function CreateTicket() {
-  const data = useActionData();
-
   return (
     <Form method="post">
       <DashboardContainer
         title="New Ticket"
-        description="Submit a ticket and track your request"
+        description="Submit a ticket and track your request."
       >
-        <DashboardSection title="General Information">
+        <DashboardSection
+          title="General Information"
+          parentClassName="flex flex-col gap-3"
+        >
           <div className="flex gap-3">
             <Input type="number" id="year" label="Year" />
             <Input id="make" label="Make" />
             <Input id="model" label="Model" />
           </div>
-          <div className="flex gap-3 mt-3">
+          <div className="flex gap-3">
             <Input id="location" label="Current Location" />
             <Input type="number" id="daysOnLot" label="Days on Lot" />
           </div>
         </DashboardSection>
         <DashboardSection
           title="Inspection"
-          parentClassName="flex flex-wrap gap-6"
+          parentClassName="flex flex-wrap gap-4"
         >
           <DropdownField
             id="windshield"
@@ -61,7 +59,7 @@ function CreateTicket() {
           />
         </DashboardSection>
 
-        <Button>Create Ticket</Button>
+        <Button updateNavigationState={true}>Create Ticket</Button>
       </DashboardContainer>
     </Form>
   );
@@ -75,7 +73,7 @@ function DropdownField({ id, text, value, options }) {
   }
 
   return (
-    <div className="flex items-center justify-between gap-4">
+    <div className="flex items-center justify-between gap-3">
       <div>
         <p>{text}</p>
       </div>

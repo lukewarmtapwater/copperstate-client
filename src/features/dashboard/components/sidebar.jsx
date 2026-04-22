@@ -1,40 +1,31 @@
 import {
   RiDashboardLine,
-  RiSettings3Line,
   RiFileListLine,
   RiFileAddLine,
-  RiBarChartLine,
-  RiSidebarUnfoldLine,
-  RiSidebarFoldLine,
   RiArrowDropLeftLine,
 } from "@remixicon/react";
-import { useState } from "react";
-import { NavLink, useLocation, useNavigate, useNavigation } from "react-router";
-import request from "../../../utils/request";
+import { NavLink } from "react-router";
 import Button from "../../../components/button";
 import roles from "../../../utils/roles";
-
-// no issues
 
 function Sidebar({ user, sidebar, setSidebar }) {
   return (
     sidebar && (
-      <div className="z-50 absolute bg-white sm:static w-[260px] h-screen py-8 px-4 border-r border-muted flex flex-col">
+      <div className="z-[100] absolute bg-white sm:static w-[260px] h-screen py-6 px-4 border-r border-muted flex flex-col">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-full bg-gradient-to-br from-[#FFA211] via-[#FF6C00] to-[#D95A0F] "></div>
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFA211] via-[#FF6C00] to-[#D95A0F]"></div>
             <div>
-              <h4 className="-mb-1">{user.email.split("@")[0]}</h4>
-              <p className="text-sm">{roles[user.role]}</p>
+              <h4 className="-mb-[1px]">{user.email.split("@")[0]}</h4>
+              <p className="text-xs">{roles[user.role]}</p>
             </div>
           </div>
-          <RiArrowDropLeftLine
-            className="h-8 w-8 cursor-pointer hover:text-primary"
-            onClick={() => setSidebar(false)}
-          />
+          <Button variant="ghost" onClick={() => setSidebar(false)}>
+            <RiArrowDropLeftLine />
+          </Button>
         </div>
 
-        <nav className="flex flex-col gap-2 mt-6 [&>h4]:text-xs [&>h4]:text-foreground/50 [&>h4]:my-2">
+        <nav className="flex flex-col gap-2 mt-6 [&>h4]:text-xs [&>h4]:text-foreground/50 [&>h4]:my-1">
           <h4>MENU</h4>
           <SidebarButton
             text="Dashboard"
@@ -67,7 +58,7 @@ function SidebarButton({ text, icon, to }) {
       {({ isActive, isPending }) => (
         <Button
           variant="ghost"
-          className={`w-full gap-3
+          className={`w-full gap-3 py-3
             ${
               isActive
                 ? "text-primary hover:bg-primary/10 hover:text-primary"
@@ -78,7 +69,7 @@ function SidebarButton({ text, icon, to }) {
           loading={isPending}
         >
           {isActive && <div className="w-1 h-4 rounded-full bg-primary"></div>}
-          <div className="w-6 h-6 mb-[4px]">{icon}</div>
+          <div className="w-6 h-6 mb-[3px]">{icon}</div>
           {text}
         </Button>
       )}

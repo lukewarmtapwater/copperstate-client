@@ -1,13 +1,11 @@
-import { Outlet, useActionData } from "react-router";
+import { Outlet } from "react-router";
 import Logo from "../../../components/logo";
-
-// no issues
 
 function AccountLayout() {
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex flex-col items-center border border-muted max-w-[420px] m-10 rounded-md px-8 py-12">
-        <Logo className="mb-14" />
+    <div className="min-h-screen h-screen sm:h-max flex justify-center items-center">
+      <div className="max-w-[420px] h-full flex flex-col items-center gap-20 border-muted rounded-md px-7 py-10 sm:border sm:m-10">
+        <Logo />
         <Outlet />
       </div>
     </div>

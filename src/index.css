@@ -3,57 +3,57 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Condensed";
-  src: url(/fonts/ABCDiatypeCondensed-Bold-Trial.otf);
-  font-display: swap;
+    font-family: "Condensed";
+    src: url(/fonts/ABCDiatypeCondensed-Bold-Trial.otf);
+    font-display: swap;
 }
 @font-face {
-  font-family: "Indivisible";
-  src: url(/fonts/fonnts.com-Indivisible.otf);
-  font-display: swap;
+    font-family: "Indivisible";
+    src: url(/fonts/fonnts.com-Indivisible.otf);
+    font-display: swap;
 }
 
 body {
-  @apply indivisible;
+    @apply indivisible text-sm md:text-base;
 }
 h1 {
-  @apply text-[65px] leading-[55px] -my-2 condensed;
+    @apply text-[55px] sm:text-[65px] leading-[50px] sm:leading-[55px] -my-2 condensed;
 }
 h2 {
-  @apply text-[45px] leading-[40px] condensed;
+    @apply text-[45px] leading-[35px] condensed;
 }
 h3 {
-  @apply text-[24px];
+    @apply text-[20px];
 }
 h4 {
-  @apply text-[17px];
+    @apply text-[17px];
 }
 a {
-  @apply text-primary hover:underline hover:cursor-pointer;
+    @apply text-primary hover:underline hover:cursor-pointer;
 }
 p {
-  @apply text-foreground;
+    @apply text-foreground;
 }
 span {
-  @apply text-black;
+    @apply text-black;
 }
 
 .condensed {
-  @apply font-['Condensed'] uppercase;
+    @apply font-['Condensed'] uppercase;
 }
 .indivisible {
-  @apply font-['Indivisible'] tracking-tight;
+    @apply font-['Indivisible'] tracking-tight;
 }
 
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 2px;
+    width: 5px;
+    height: 2px;
 }
 ::-webkit-scrollbar-track {
-  background: rgb(204, 204, 204);
+    background: rgb(204, 204, 204);
 }
 ::-webkit-scrollbar-thumb {
-  background-color: grey;
-  width: 4px;
-  height: 6px;
+    background-color: grey;
+    width: 4px;
+    height: 6px;
 }

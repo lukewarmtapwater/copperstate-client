@@ -1,8 +1,6 @@
 import { redirect } from "react-router";
 import request from "../../../utils/request";
 
-// no issues
-
 async function inventoryLoader() {
   const res = await request("/inventory/");
 

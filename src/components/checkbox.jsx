@@ -1,7 +1,3 @@
-// No issues
-// ID = Name
-// ID should be camel case
-
 function CheckBox({ id, label, className = "", ...props }) {
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>

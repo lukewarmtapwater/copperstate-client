@@ -17,7 +17,7 @@ function DashboardSection({
   return (
     <div
       className={twMerge(
-        "flex flex-col gap-8 bg-subtle shadow-md rounded-md px-8 py-8 border border-muted ml-0",
+        "w-full flex flex-col gap-7 bg-subtle shadow-sm rounded-md px-4 py-6 border border-muted",
         sectionclassName,
       )}
       {...props}
@@ -26,7 +26,7 @@ function DashboardSection({
         <div className="flex justify-between items-center">
           <h3>{title}</h3>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {header}
             {expandable && (
               <Button

@@ -1,10 +1,12 @@
 import DashboardSection from "./dashboard-section";
 
-// No issues
-
 function NumberBox({ title, footer = "", value }) {
   return (
-    <DashboardSection title={title} expandable={false}>
+    <DashboardSection
+      title={title}
+      expandable={false}
+      sectionclassName="w-full sm:w-max"
+    >
       <h1 className="text-primary mb-2">{value}</h1>
       <p>{footer}</p>
     </DashboardSection>

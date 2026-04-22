@@ -1,5 +1,3 @@
-// no issues
-
 function NoAccess() {
   return (
     <p className="text-danger">
