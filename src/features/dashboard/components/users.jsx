@@ -26,7 +26,7 @@ function User({ user }) {
         <h4>{user.email}</h4>
         <div className="mt-6 ml-2">
           <p>Role: {roles[user.role]}</p>
-          <p>Last login {formatDateTime(user.lastLogin)}</p>
+          <p>Last login: {formatDateTime(user.lastLogin)}</p>
         </div>
       </div>
       <NavButton to={`/user/${user._id}`}>
