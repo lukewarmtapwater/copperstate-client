@@ -18,7 +18,7 @@ function DashboardLayout() {
   }, []);
 
   useEffect(() => {
-    setSidebar(!isMobile);
+    if (isMobile) setSidebar(false);
   }, [isMobile]);
 
   useEffect(() => {

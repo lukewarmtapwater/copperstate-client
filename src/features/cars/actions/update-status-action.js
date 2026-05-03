@@ -4,7 +4,7 @@ async function updateStatusAction({ request }) {
   const { carId, newStatus } = Object.fromEntries(await request.formData());
 
   const res = await requestUtil(`/inventory/${carId}/status`, {
-    method: "POST",
+    method: "PATCH",
     body: { newStatus },
   });
 

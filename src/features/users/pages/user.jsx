@@ -22,7 +22,7 @@ function User() {
   async function handleChange(newRole) {
     await submit(
       { newRole: newRole.toLowerCase(), userId: user._id },
-      { method: "post" },
+      { method: "PATCH" },
     );
     setRole(newRole);
   }
@@ -74,7 +74,7 @@ function User() {
         parentClassName="flex flex-col gap-4"
       >
         {cars.length ? (
-          cars.map((car, i) => <Car car={car} key={i} />)
+          cars.map((car) => <Car car={car} key={car._id} />)
         ) : (
           <p>No cars found.</p>
         )}

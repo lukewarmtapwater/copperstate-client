@@ -27,7 +27,7 @@ function Car() {
   const submit = useSubmit();
 
   async function handleChange(newStatus) {
-    await submit({ newStatus, carId: car._id });
+    await submit({ newStatus, carId: car._id }, { method: "PATCH" });
     setStatus(newStatus);
   }
 
@@ -60,6 +60,7 @@ function Car() {
             value={status}
             options={["Awaiting Inspection", "Inspected"]}
             onChange={handleChange}
+            updateNavigationState={true}
           />
         }
       >

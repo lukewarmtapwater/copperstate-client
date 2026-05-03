@@ -3,11 +3,23 @@ import {
   RiFileListLine,
   RiFileAddLine,
   RiArrowDropLeftLine,
+  RiLogoutBoxRLine,
 } from "@remixicon/react";
-import { NavLink } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import Button from "../../../components/button";
+import request from "../../../utils/request";
 
 function Sidebar({ user, sidebar, setSidebar }) {
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    try {
+      await request("/users/logout", { method: "POST" });
+    } finally {
+      navigate("/login");
+    }
+  }
+
   return (
     sidebar && (
       <div className="z-[100] absolute bg-white sm:static w-[260px] h-screen py-6 px-4 border-r border-muted flex flex-col">
@@ -46,6 +58,11 @@ function Sidebar({ user, sidebar, setSidebar }) {
             </>
           )}
         </nav>
+
+        <Button type="button" onClick={handleLogout} className="w-full mt-auto">
+          Logout
+          <RiLogoutBoxRLine />
+        </Button>
       </div>
     )
   );

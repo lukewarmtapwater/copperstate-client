@@ -4,7 +4,7 @@ async function ChangeRoleAction({ request }) {
   const { newRole, userId } = Object.fromEntries(await request.formData());
 
   const res = await requestUtil(`/users/${userId}/role`, {
-    method: "POST",
+    method: "PATCH",
     body: { newRole },
   });
 
