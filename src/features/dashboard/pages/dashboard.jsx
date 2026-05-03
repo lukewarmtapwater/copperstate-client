@@ -13,16 +13,17 @@ function Dashboard() {
       title="Welcome!"
       description="Manage users and inventory with full system oversight."
     >
-      {user.role === 0 && (
-        <NumberBox
-          title="Employees"
-          value={users.length}
-          footer="0 users registered today."
-        />
+      {user.role === "admin" && (
+        <>
+          <NumberBox
+            title="Employees"
+            value={users.length}
+            footer="0 users registered today."
+          />
+          <Users users={users} />
+        </>
       )}
-
-      {user.role === 0 && <Users users={users} />}
-      {user.role === 3 && <NoAccess />}
+      {user.role === "unassigned" && <NoAccess />}
     </DashboardContainer>
   );
 }

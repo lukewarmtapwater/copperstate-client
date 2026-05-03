@@ -6,7 +6,6 @@ import {
 } from "@remixicon/react";
 import { NavLink } from "react-router";
 import Button from "../../../components/button";
-import roles from "../../../utils/roles";
 
 function Sidebar({ user, sidebar, setSidebar }) {
   return (
@@ -17,7 +16,7 @@ function Sidebar({ user, sidebar, setSidebar }) {
             <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFA211] via-[#FF6C00] to-[#D95A0F]"></div>
             <div>
               <h4 className="-mb-[1px]">{user.email.split("@")[0]}</h4>
-              <p className="text-xs">{roles[user.role]}</p>
+              <p className="text-xs">{user.role}</p>
             </div>
           </div>
           <Button variant="ghost" onClick={() => setSidebar(false)}>
@@ -32,7 +31,7 @@ function Sidebar({ user, sidebar, setSidebar }) {
             icon={<RiDashboardLine />}
             to="/dashboard"
           />
-          {user.role !== 3 && (
+          {user.role !== "unassigned" && (
             <>
               <SidebarButton
                 text="Inventory"

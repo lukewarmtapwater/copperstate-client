@@ -1,8 +1,25 @@
 import { useEffect, useState } from "react";
 import Logo from "../components/logo";
+import {
+  RiMenuLine,
+  RiCloseLine,
+  RiArrowRightSLine,
+  RiSearchLine,
+  RiBellLine,
+  RiSmartphoneLine,
+  RiToolsLine,
+  RiFileListLine,
+  RiMapPinLine,
+  RiCalendarView,
+  RiShieldCheckLine,
+  RiRefreshLine,
+  RiCarLine,
+  RiTruckLine,
+  RiLineChartLine,
+  RiArrowRightLine,
+} from "@remixicon/react";
 
 export default function Index() {
-  const [desktopMenu, setDesktopMenu] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [accountModal, setAccountModal] = useState(false);
   const [loginModal, setLoginModal] = useState(false);
@@ -10,7 +27,6 @@ export default function Index() {
   useEffect(() => {
     const closeOnEsc = (e) => {
       if (e.key === "Escape") {
-        setDesktopMenu(false);
         setMobileMenu(false);
         setAccountModal(false);
         setLoginModal(false);
@@ -21,145 +37,106 @@ export default function Index() {
   }, []);
 
   return (
-    <div className="min-h-screen text-[#171717] bg-gradient-to-b from-white via-[#faf8f6] to-white">
+    <div className="min-h-screen bg-background text-black">
       {/* Announcement */}
-      <div className="bg-primary text-white text-sm">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex gap-3 justify-center text-center">
-          <span>Announcement:</span>
-          <span>
-            Fresh wholesale inventory added weekly • Dealer access coming online
-            • Transportation available
-          </span>
-        </div>
+      <div className="bg-primary py-2.5">
+        <p className="text-center text-white text-sm">
+          Fresh wholesale inventory added weekly &bull; Dealer access coming
+          online &bull; Transportation available
+        </p>
       </div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/90 border-b border-black/10">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between h-[78px]">
-            {/* Brand */}
-            <a href="#" className="flex items-center gap-3">
+      {/* ─── Header ─── */}
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-muted">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between h-[68px]">
+            <a href="#" className="hover:no-underline">
               <Logo />
             </a>
 
-            {/* Desktop Nav */}
-            <nav className="hidden md:flex gap-2 items-center">
-              <a
-                href="#inventory"
-                className="px-4 py-2 rounded-sm border border-muted"
-              >
-                Inventory
-              </a>
-              <a
-                href="#dealer-portal"
-                className="px-4 py-2 rounded-sm border border-muted"
-              >
-                Dealer Portal
-              </a>
-              <a
-                href="#employee-tools"
-                className="px-4 py-2 rounded-sm border border-muted"
-              >
-                Employee Tools
-              </a>
-              <a
-                href="#contact"
-                className="px-4 py-2 rounded-sm border border-muted"
-              >
-                Contact Us
-              </a>
+            <nav className="hidden md:flex items-center gap-7">
+              {[
+                ["Inventory", "#inventory"],
+                ["Dealer Portal", "#dealer-portal"],
+                ["Employee Tools", "#employee-tools"],
+                ["Contact", "#contact"],
+              ].map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="text-foreground hover:text-black hover:no-underline transition-colors text-sm"
+                >
+                  {label}
+                </a>
+              ))}
             </nav>
 
-            {/* Actions */}
-            <div className="flex items-center gap-2 relative">
+            <div className="hidden md:flex items-center gap-2">
               <button
                 onClick={() => setLoginModal(true)}
-                className="px-4 py-2 rounded-full border border-black/10 hidden md:inline-block"
-              >
-                Login
-              </button>
-
-              {/* Menu */}
-              <div className="relative hidden md:block">
-                <button
-                  onClick={() => setDesktopMenu((v) => !v)}
-                  className="px-4 py-2 rounded-full border border-black/10"
-                >
-                  Menu ☰
-                </button>
-
-                {desktopMenu && (
-                  <div className="absolute right-0 mt-3 w-72 bg-white border border-black/10 rounded-2xl shadow-xl p-2">
-                    <button
-                      onClick={() => setLoginModal(true)}
-                      className="w-full text-left px-4 py-3 rounded-xl hover:bg-orange-50 flex justify-between"
-                    >
-                      Dealer Login <span>→</span>
-                    </button>
-                    <a
-                      href="/login"
-                      className="block px-4 py-3 hover:bg-orange-50 rounded-xl"
-                    >
-                      Employee Login →
-                    </a>
-                    <button
-                      onClick={() => setAccountModal(true)}
-                      className="w-full text-left px-4 py-3 hover:bg-orange-50 rounded-xl flex justify-between"
-                    >
-                      Open an Account <span>→</span>
-                    </button>
-                    <a
-                      href="#inventory"
-                      className="block px-4 py-3 hover:bg-orange-50 rounded-xl"
-                    >
-                      Find Inventory →
-                    </a>
-                    <a
-                      href="#contact"
-                      className="block px-4 py-3 hover:bg-orange-50 rounded-xl"
-                    >
-                      Contact Us →
-                    </a>
-                  </div>
-                )}
-              </div>
-
-              {/* Mobile */}
-              <button
-                className="md:hidden px-4 py-2 rounded-full border border-black/10"
-                onClick={() => setMobileMenu((v) => !v)}
-              >
-                ☰
-              </button>
-            </div>
-          </div>
-
-          {mobileMenu && (
-            <div className="md:hidden border-t border-black/10 py-3 space-y-2">
-              <a className="block p-3 border rounded-xl" href="#inventory">
-                Inventory
-              </a>
-              <a className="block p-3 border rounded-xl" href="#dealer-portal">
-                Dealer Portal
-              </a>
-              <a className="block p-3 border rounded-xl" href="#employee-tools">
-                Employee Tools
-              </a>
-              <a className="block p-3 border rounded-xl" href="#contact">
-                Contact
-              </a>
-              <button
-                onClick={() => setLoginModal(true)}
-                className="block p-3 border rounded-xl w-full text-left"
+                className="px-3 py-2 rounded-sm border border-muted text-foreground hover:bg-subtle transition-colors text-sm"
               >
                 Dealer Login
               </button>
-              <a className="block p-3 border rounded-xl" href="/login">
+              <a
+                href="/login"
+                className="flex items-center gap-1 px-3 py-2 rounded-sm bg-primary text-black hover:bg-primary/80 hover:no-underline transition-colors text-sm"
+              >
+                Employee Login
+                <RiArrowRightSLine className="w-4 h-4" />
+              </a>
+            </div>
+
+            <button
+              className="md:hidden p-2 rounded-sm border border-muted text-foreground"
+              onClick={() => setMobileMenu((v) => !v)}
+            >
+              {mobileMenu ? (
+                <RiCloseLine className="w-5 h-5" />
+              ) : (
+                <RiMenuLine className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+
+          {mobileMenu && (
+            <div className="md:hidden border-t border-muted py-4 flex flex-col gap-2">
+              {[
+                ["Inventory", "#inventory"],
+                ["Dealer Portal", "#dealer-portal"],
+                ["Employee Tools", "#employee-tools"],
+                ["Contact", "#contact"],
+              ].map(([label, href]) => (
+                <a
+                  key={label}
+                  href={href}
+                  onClick={() => setMobileMenu(false)}
+                  className="px-3 py-2.5 rounded-sm border border-muted text-foreground hover:bg-subtle hover:no-underline text-sm"
+                >
+                  {label}
+                </a>
+              ))}
+              <button
+                onClick={() => {
+                  setMobileMenu(false);
+                  setLoginModal(true);
+                }}
+                className="px-3 py-2.5 rounded-sm border border-muted text-foreground text-left hover:bg-subtle text-sm"
+              >
+                Dealer Login
+              </button>
+              <a
+                href="/login"
+                className="px-3 py-2.5 rounded-sm bg-primary text-black text-center hover:bg-primary/80 hover:no-underline text-sm"
+              >
                 Employee Login
               </a>
               <button
-                onClick={() => setAccountModal(true)}
-                className="block p-3 border rounded-xl w-full text-left"
+                onClick={() => {
+                  setMobileMenu(false);
+                  setAccountModal(true);
+                }}
+                className="px-3 py-2.5 rounded-sm border border-primary text-primary text-left text-sm"
               >
                 Open Account
               </button>
@@ -168,242 +145,279 @@ export default function Index() {
         </div>
       </header>
 
-      {/* HERO */}
-      <section className="py-14">
-        <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-8">
-          {/* Left */}
-          <div className="p-8 rounded-3xl border shadow-lg bg-white">
-            <div className="inline-block px-4 py-2 rounded-full bg-orange-100 border text-sm mb-4">
-              Wholesale inventory • Dealer-first platform
-            </div>
-
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
-              Skip the auction fees. Buy direct from Copper State.
-            </h1>
-
-            <p className="text-gray-500 mb-6">
-              Built for registered dealers and internal teams, this platform
-              manages inventory, status workflow, and wholesale purchasing.
-            </p>
-
-            <div className="flex flex-wrap gap-3 mb-6">
-              <a
-                href="#inventory"
-                className="px-5 py-3 rounded-full bg-orange-600 text-white"
-              >
-                View Inventory
-              </a>
-              <button
-                onClick={() => setAccountModal(true)}
-                className="px-5 py-3 rounded-full border"
-              >
-                Create Account
-              </button>
-              <a href="/login" className="px-5 py-3 rounded-full border">
-                Employee Login
-              </a>
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-3 text-sm text-gray-600">
-              <div className="p-4 border rounded-xl bg-orange-50">
-                <strong className="block text-black">7-day confidence</strong>
-                Early guarantee placeholder
-              </div>
-              <div className="p-4 border rounded-xl bg-orange-50">
-                <strong className="block text-black">Weekly inventory</strong>
-                Fresh uploads every week
-              </div>
-              <div className="p-4 border rounded-xl bg-orange-50">
-                <strong className="block text-black">Retail-ready units</strong>
-                Condition + pricing clarity
-              </div>
-              <div className="p-4 border rounded-xl bg-orange-50">
-                <strong className="block text-black">
-                  Transport available
-                </strong>
-                Delivery support ready
-              </div>
-            </div>
+      {/* ─── Hero ─── */}
+      <section className="py-24 sm:py-32">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-primary/10 border border-primary/20 text-primary text-sm mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+            Wholesale inventory &bull; Dealer-first platform
           </div>
 
-          {/* Right */}
-          <div className="p-6 rounded-3xl border shadow-lg bg-white">
-            <div className="flex justify-between text-sm text-gray-500 mb-4">
-              <span>● ● ●</span>
-              <span>Inventory preview</span>
-            </div>
+          <h1 className="text-black max-w-3xl mb-6">
+            Skip the auction fees. Buy direct from Copper State.
+          </h1>
 
-            <div className="p-4 border rounded-2xl bg-orange-50 space-y-4">
-              <div className="flex justify-between">
-                <span className="px-3 py-1 border rounded-full text-sm">
-                  Search inventory
-                </span>
-                <span className="px-3 py-1 border rounded-full text-sm bg-green-50">
-                  Live ready
-                </span>
-              </div>
-
-              <div className="p-3 border rounded-xl text-gray-500">
-                Search by VIN, model, stock number...
-              </div>
-
-              <div className="border rounded-2xl p-4 space-y-3 bg-white">
-                <div className="flex justify-between">
-                  <div>
-                    <div className="font-bold">2020 Honda Passport</div>
-                    <div className="text-xs text-gray-500">Stock #0120300</div>
-                  </div>
-                  <span className="px-3 py-1 border rounded-full text-sm">
-                    Shop
-                  </span>
-                </div>
-
-                <div className="h-40 rounded-xl bg-gradient-to-br from-orange-200 to-black/80" />
-
-                <div className="flex justify-between text-xs text-gray-500">
-                  <span>Location: Bayon 8</span>
-                  <span>Sale: 04/26/26</span>
-                </div>
-
-                <div className="flex gap-2">
-                  <button className="px-3 py-2 bg-orange-600 text-white rounded-full text-sm">
-                    Open
-                  </button>
-                  <button className="px-3 py-2 border rounded-full text-sm">
-                    Photos
-                  </button>
-                  <button className="px-3 py-2 border rounded-full text-sm">
-                    History
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* INVENTORY */}
-      <section id="inventory" className="py-10">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-2">
-            Landing page + inventory interface
-          </h2>
-          <p className="text-gray-500 mb-6">
-            Front-end shell for browsing inventory and managing workflow.
+          <p className="text-lg max-w-xl mb-10">
+            Built for registered dealers and internal teams — manage inventory,
+            status workflow, and wholesale purchasing all in one place.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-4">
-            <div className="p-6 border rounded-2xl">
-              <div className="text-2xl mb-2">🔎</div>
-              <h3 className="font-bold mb-2">Search</h3>
-              <p className="text-gray-500 text-sm">
-                Filters, VIN lookup, status tags.
-              </p>
+          <div className="flex flex-wrap gap-3 mb-24">
+            <a
+              href="#inventory"
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-sm bg-primary text-black hover:bg-primary/80 hover:no-underline transition-colors text-sm"
+            >
+              View Inventory
+              <RiArrowRightSLine className="w-4 h-4" />
+            </a>
+            <button
+              onClick={() => setAccountModal(true)}
+              className="px-4 py-2.5 rounded-sm border border-muted text-foreground hover:bg-subtle transition-colors text-sm"
+            >
+              Create Account
+            </button>
+            <a
+              href="/login"
+              className="px-4 py-2.5 rounded-sm border border-muted text-foreground hover:bg-subtle hover:no-underline transition-colors text-sm"
+            >
+              Employee Login
+            </a>
+          </div>
+
+          {/* Feature tiles */}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 border-t border-muted pt-12">
+            {[
+              [
+                RiShieldCheckLine,
+                "7-day confidence",
+                "Early purchase guarantee on all units.",
+              ],
+              [
+                RiRefreshLine,
+                "Weekly inventory",
+                "Fresh uploads every week, no gaps.",
+              ],
+              [
+                RiCarLine,
+                "Retail-ready units",
+                "Full condition and pricing clarity.",
+              ],
+              [
+                RiTruckLine,
+                "Transport available",
+                "Delivery support ready nationwide.",
+              ],
+            ].map(([Icon, title, desc]) => (
+              <div key={title} className="flex flex-col gap-3 py-2">
+                <Icon className="w-5 h-5 text-primary" />
+                <div>
+                  <p className="text-black text-sm font-medium mb-0.5">
+                    {title}
+                  </p>
+                  <p className="text-sm">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Platform Overview ─── */}
+      <section id="inventory" className="py-24 border-t border-muted bg-subtle">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-14">
+            <p className="text-primary text-xs uppercase tracking-widest mb-3">
+              Platform
+            </p>
+            <h2 className="text-black mb-5">Built for the whole workflow.</h2>
+            <p className="max-w-lg">
+              A unified interface for browsing inventory, submitting tickets,
+              and managing the full wholesale workflow from start to finish.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              [
+                RiSearchLine,
+                "Search & Filter",
+                "VIN lookup, status tags, and smart filters across your entire inventory.",
+              ],
+              [
+                RiBellLine,
+                "Announcements",
+                "Weekly sale dates, alerts, and priority updates for registered dealers.",
+              ],
+              [
+                RiSmartphoneLine,
+                "Mobile Ready",
+                "Fully responsive — works seamlessly on any screen or device.",
+              ],
+            ].map(([Icon, title, desc]) => (
+              <div
+                key={title}
+                className="p-6 border border-muted rounded-md bg-background"
+              >
+                <div className="w-9 h-9 flex items-center justify-center rounded-sm bg-primary/10 mb-6">
+                  <Icon className="w-[18px] h-[18px] text-primary" />
+                </div>
+                <h3 className="text-black mb-2">{title}</h3>
+                <p className="text-sm">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Dealer Portal ─── */}
+      <section id="dealer-portal" className="py-24 border-t border-muted">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-14">
+            <p className="text-primary text-xs uppercase tracking-widest mb-3">
+              Dealer Portal
+            </p>
+            <h2 className="text-black mb-5">
+              Everything a dealer needs, in one place.
+            </h2>
+            <p className="max-w-lg">
+              Browse, purchase, and track units from acquisition to delivery
+              inside a dedicated dealer workspace.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-5">
+            {/* Actions */}
+            <div className="p-6 border border-muted rounded-md bg-background">
+              <h3 className="text-black mb-5">Dealer Actions</h3>
+              <div className="flex flex-col divide-y divide-muted border border-muted rounded-md overflow-hidden">
+                {[
+                  ["Inventory", "Browse available units"],
+                  ["Purchase", "Checkout flow"],
+                  ["Buyer Portal", "Payments & invoices"],
+                  ["Title Status", "Real-time tracking"],
+                ].map(([label, value]) => (
+                  <div
+                    key={label}
+                    className="flex items-center justify-between px-4 py-3.5 bg-background hover:bg-subtle transition-colors cursor-pointer group"
+                  >
+                    <span className="text-sm text-black">{label}</span>
+                    <div className="flex items-center gap-1.5 text-foreground">
+                      <span className="text-sm">{value}</span>
+                      <RiArrowRightSLine className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="p-6 border rounded-2xl">
-              <div className="text-2xl mb-2">📣</div>
-              <h3 className="font-bold mb-2">Announcements</h3>
-              <p className="text-gray-500 text-sm">
-                Weekly updates and alerts.
-              </p>
-            </div>
-            <div className="p-6 border rounded-2xl">
-              <div className="text-2xl mb-2">📱</div>
-              <h3 className="font-bold mb-2">Mobile ready</h3>
-              <p className="text-gray-500 text-sm">Fully responsive layout.</p>
+
+            {/* Metrics */}
+            <div className="p-6 border border-muted rounded-md bg-background">
+              <h3 className="text-black mb-5">Live Metrics</h3>
+              <div className="grid grid-cols-3 gap-4 h-[calc(100%-52px)]">
+                {[
+                  [RiCarLine, "148", "Units"],
+                  [RiFileListLine, "23", "Titles"],
+                  [RiLineChartLine, "12", "Sales"],
+                ].map(([Icon, value, label]) => (
+                  <div
+                    key={label}
+                    className="flex flex-col items-center justify-center border border-muted rounded-md py-8 gap-2"
+                  >
+                    <Icon className="w-5 h-5 text-primary" />
+                    <span className="text-4xl font-bold text-primary leading-none">
+                      {value}
+                    </span>
+                    <span className="text-xs text-foreground">{label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* DEALER */}
-      <section id="dealer-portal" className="py-10">
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-6">
-          <div className="p-6 border rounded-2xl">
-            <h3 className="font-bold mb-4">Dealer actions</h3>
-            <div className="space-y-2 text-sm text-gray-600">
-              <div className="flex justify-between p-3 border rounded-xl">
-                <span>Inventory</span>
-                <span>Browse units</span>
-              </div>
-              <div className="flex justify-between p-3 border rounded-xl">
-                <span>Purchase</span>
-                <span>Checkout flow</span>
-              </div>
-              <div className="flex justify-between p-3 border rounded-xl">
-                <span>Buyer portal</span>
-                <span>Payments</span>
-              </div>
-              <div className="flex justify-between p-3 border rounded-xl">
-                <span>Title status</span>
-                <span>Tracking</span>
-              </div>
-            </div>
+      {/* ─── Employee Tools ─── */}
+      <section
+        id="employee-tools"
+        className="py-24 border-t border-muted bg-subtle"
+      >
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="mb-14">
+            <p className="text-primary text-xs uppercase tracking-widest mb-3">
+              Employee Tools
+            </p>
+            <h2 className="text-black mb-5">
+              Internal operations, simplified.
+            </h2>
+            <p className="max-w-lg">
+              Workflow modules built for inspectors, mechanics, and managers to
+              keep operations moving without friction.
+            </p>
           </div>
 
-          <div className="p-6 border rounded-2xl">
-            <h3 className="font-bold mb-4">Metrics</h3>
-            <div className="grid grid-cols-3 gap-2 text-center">
-              <div className="p-4 border rounded-xl">
-                <div className="text-xl font-bold">148</div>
-                <div className="text-xs text-gray-500">Units</div>
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-5">
+            {[
+              [
+                RiToolsLine,
+                "Mechanical Status",
+                "Track repair and inspection states across all vehicles.",
+              ],
+              [
+                RiFileListLine,
+                "Tickets",
+                "Create and manage service and inspection tickets.",
+              ],
+              [
+                RiMapPinLine,
+                "Locations",
+                "Monitor vehicle lot placement and movement.",
+              ],
+              [
+                RiCalendarView,
+                "Sale Workflow",
+                "Coordinate sale dates, readiness, and sign-off.",
+              ],
+            ].map(([Icon, title, desc]) => (
+              <div
+                key={title}
+                className="p-6 border border-muted rounded-md bg-background"
+              >
+                <div className="w-9 h-9 flex items-center justify-center rounded-sm bg-primary/10 mb-6">
+                  <Icon className="w-[18px] h-[18px] text-primary" />
+                </div>
+                <h3 className="text-black mb-2">{title}</h3>
+                <p className="text-sm">{desc}</p>
               </div>
-              <div className="p-4 border rounded-xl">
-                <div className="text-xl font-bold">23</div>
-                <div className="text-xs text-gray-500">Titles</div>
-              </div>
-              <div className="p-4 border rounded-xl">
-                <div className="text-xl font-bold">12</div>
-                <div className="text-xs text-gray-500">Sales</div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* EMPLOYEE */}
-      <section id="employee-tools" className="py-10">
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-4">
-          {[
-            ["🛠️", "Mechanical status"],
-            ["🧾", "Tickets"],
-            ["🚚", "Locations"],
-            ["📅", "Sale workflow"],
-          ].map(([i, t]) => (
-            <div key={t} className="p-6 border rounded-2xl">
-              <div className="text-2xl">{i}</div>
-              <h3 className="font-bold mt-2">{t}</h3>
-              <p className="text-gray-500 text-sm">
-                Placeholder workflow module for internal operations.
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section id="contact" className="py-14">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="p-8 border rounded-3xl bg-orange-50 flex flex-wrap justify-between gap-4">
+      {/* ─── CTA ─── */}
+      <section id="contact" className="py-24 border-t border-muted">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-10">
             <div>
-              <h2 className="text-3xl font-bold mb-2">
-                Backend ready to connect later
-              </h2>
-              <p className="text-gray-600 max-w-xl">
-                Static front end designed for future API integration without
-                redesign.
+              <p className="text-primary text-xs uppercase tracking-widest mb-3">
+                Get started
+              </p>
+              <h2 className="text-black mb-5">Ready to get started?</h2>
+              <p className="max-w-lg">
+                Register as a dealer to access wholesale inventory, or log in as
+                an employee to manage operations, tickets, and status workflow.
               </p>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-3 shrink-0">
               <button
                 onClick={() => setAccountModal(true)}
-                className="px-5 py-3 bg-orange-600 text-white rounded-full"
+                className="flex items-center gap-1.5 px-4 py-2.5 rounded-sm bg-primary text-black hover:bg-primary/80 transition-colors text-sm"
               >
                 Open Account
+                <RiArrowRightLine className="w-4 h-4" />
               </button>
               <button
                 onClick={() => setLoginModal(true)}
-                className="px-5 py-3 border rounded-full"
+                className="px-4 py-2.5 rounded-sm border border-muted text-foreground hover:bg-subtle transition-colors text-sm"
               >
                 Dealer Login
               </button>
@@ -412,80 +426,100 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t py-8 text-sm text-gray-500">
-        <div className="max-w-7xl mx-auto px-4 flex justify-between flex-wrap gap-2">
-          <span>© 2026 Copper State Auto Wholesale</span>
-          <span>Dealer • Inventory • Employee tools</span>
+      {/* ─── Footer ─── */}
+      <footer className="border-t border-muted py-8">
+        <div className="max-w-6xl mx-auto px-6 flex flex-wrap justify-between gap-4">
+          <p className="text-sm text-foreground">
+            © 2026 Copper State Auto Wholesale
+          </p>
+          <p className="text-sm text-foreground">
+            Dealer &bull; Inventory &bull; Employee Tools
+          </p>
         </div>
       </footer>
 
-      {/* ACCOUNT MODAL */}
+      {/* ─── Account Modal ─── */}
       {accountModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-lg p-6 rounded-3xl">
-            <div className="flex justify-between mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setAccountModal(false)}
+          />
+          <div className="relative z-10 w-full max-w-md bg-background rounded-md shadow-lg border border-muted flex flex-col">
+            <div className="flex items-start justify-between px-5 py-4 border-b border-muted">
               <div>
-                <h3 className="text-xl font-bold">Open account</h3>
-                <p className="text-sm text-gray-500">Dealer registration</p>
+                <h3 className="text-black">Open Account</h3>
+                <p className="text-sm mt-0.5">Dealer registration</p>
               </div>
-              <button onClick={() => setAccountModal(false)}>✕</button>
+              <button
+                onClick={() => setAccountModal(false)}
+                className="p-1 rounded-sm hover:bg-subtle text-foreground"
+              >
+                <RiCloseLine className="w-5 h-5" />
+              </button>
             </div>
-
-            <div className="space-y-3">
-              <input
-                className="w-full p-3 border rounded-xl"
-                placeholder="Business name"
-              />
-              <input
-                className="w-full p-3 border rounded-xl"
-                placeholder="Contact name"
-              />
-              <input
-                className="w-full p-3 border rounded-xl"
-                placeholder="Email"
-              />
-              <select className="w-full p-3 border rounded-xl">
+            <div className="px-5 py-5 flex flex-col gap-3">
+              {[
+                { placeholder: "Business name", type: "text" },
+                { placeholder: "Contact name", type: "text" },
+                { placeholder: "Email address", type: "email" },
+                { placeholder: "License ID", type: "text" },
+              ].map(({ placeholder, type }) => (
+                <input
+                  key={placeholder}
+                  type={type}
+                  placeholder={placeholder}
+                  className="w-full px-3 py-2.5 border border-muted rounded-sm text-sm placeholder:text-foreground focus:outline-none focus:border-primary bg-background"
+                />
+              ))}
+              <select className="w-full px-3 py-2.5 border border-muted rounded-sm text-sm text-foreground focus:outline-none focus:border-primary bg-background">
                 <option>Dealer</option>
                 <option>Buyer</option>
                 <option>Broker</option>
               </select>
-              <input
-                className="w-full p-3 border rounded-xl"
-                placeholder="License ID"
-              />
-              <button className="w-full bg-orange-600 text-white py-3 rounded-full">
+              <button className="flex items-center justify-center gap-1.5 w-full px-3 py-2.5 rounded-sm bg-primary text-black text-sm hover:bg-primary/80 transition-colors mt-1">
                 Submit
+                <RiArrowRightSLine className="w-4 h-4" />
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* LOGIN MODAL */}
+      {/* ─── Login Modal ─── */}
       {loginModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-md p-6 rounded-3xl">
-            <div className="flex justify-between mb-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={() => setLoginModal(false)}
+          />
+          <div className="relative z-10 w-full max-w-sm bg-background rounded-md shadow-lg border border-muted flex flex-col">
+            <div className="flex items-start justify-between px-5 py-4 border-b border-muted">
               <div>
-                <h3 className="text-xl font-bold">Login</h3>
-                <p className="text-sm text-gray-500">Dealer access</p>
+                <h3 className="text-black">Dealer Login</h3>
+                <p className="text-sm mt-0.5">Access your dealer account</p>
               </div>
-              <button onClick={() => setLoginModal(false)}>✕</button>
+              <button
+                onClick={() => setLoginModal(false)}
+                className="p-1 rounded-sm hover:bg-subtle text-foreground"
+              >
+                <RiCloseLine className="w-5 h-5" />
+              </button>
             </div>
-
-            <div className="space-y-3">
+            <div className="px-5 py-5 flex flex-col gap-3">
               <input
-                className="w-full p-3 border rounded-xl"
-                placeholder="Email"
+                type="email"
+                placeholder="Email address"
+                className="w-full px-3 py-2.5 border border-muted rounded-sm text-sm placeholder:text-foreground focus:outline-none focus:border-primary bg-background"
               />
               <input
-                className="w-full p-3 border rounded-xl"
                 type="password"
                 placeholder="Password"
+                className="w-full px-3 py-2.5 border border-muted rounded-sm text-sm placeholder:text-foreground focus:outline-none focus:border-primary bg-background"
               />
-              <button className="w-full bg-orange-600 text-white py-3 rounded-full">
+              <button className="flex items-center justify-center gap-1.5 w-full px-3 py-2.5 rounded-sm bg-primary text-black text-sm hover:bg-primary/80 transition-colors mt-1">
                 Login
+                <RiArrowRightSLine className="w-4 h-4" />
               </button>
             </div>
           </div>

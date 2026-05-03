@@ -1,17 +1,25 @@
 import { Outlet, useLoaderData, useLocation } from "react-router";
 import Sidebar from "../components/sidebar";
 import Logo from "../../../components/logo";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { RiMenuLine } from "@remixicon/react";
-import { useRef } from "react";
 
 function DashboardLayout() {
-  const isMobile = window.innerWidth <= 768;
-
   const user = useLoaderData();
-  const [sidebar, setSidebar] = useState(!isMobile);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [sidebar, setSidebar] = useState(window.innerWidth > 768);
   const pathname = useLocation();
   const ref = useRef();
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    setSidebar(!isMobile);
+  }, [isMobile]);
 
   useEffect(() => {
     ref.current.scrollTo({

@@ -27,6 +27,13 @@ function CreateTicket() {
             <Input type="number" id="daysOnLot" label="Days on Lot" />
           </div>
         </DashboardSection>
+        <DashboardSection title="Status">
+          <DropdownField
+            id="status"
+            text="Status"
+            options={["Awaiting Inspection", "Inspected"]}
+          />
+        </DashboardSection>
         <DashboardSection
           title="Inspection"
           parentClassName="flex flex-wrap gap-4"
@@ -46,11 +53,6 @@ function CreateTicket() {
             text="Upholstery"
             options={["Light", "Medium", "Severe"]}
           />
-        </DashboardSection>
-        <DashboardSection
-          title="Features"
-          parentClassName="flex flex-wrap gap-6"
-        >
           <DropdownField id="camera" text="Camera" options={["Yes", "No"]} />
           <DropdownField
             id="steering"
@@ -58,7 +60,6 @@ function CreateTicket() {
             options={["Yes", "No"]}
           />
         </DashboardSection>
-
         <Button updateNavigationState={true}>Create Ticket</Button>
       </DashboardContainer>
     </Form>

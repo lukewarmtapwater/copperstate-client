@@ -1,4 +1,3 @@
-import roles from "../../../utils/roles";
 import formatDateTime from "../../../utils/formatDateTime";
 import DashboardSection from "../../../components/dashboard-section";
 import { RiArrowDropRightLine } from "@remixicon/react";
@@ -13,7 +12,7 @@ function Users({ users }) {
       {users.length ? (
         users.map((user, i) => <User user={user} key={i} />)
       ) : (
-        <h4>No users found.</h4>
+        <p className="text-foreground">No users found.</p>
       )}
     </DashboardSection>
   );
@@ -25,7 +24,7 @@ function User({ user }) {
       <div>
         <h4>{user.email}</h4>
         <div className="mt-6 ml-2">
-          <p>Role: {roles[user.role]}</p>
+          <p>Role: {user.role}</p>
           <p>Last login: {formatDateTime(user.lastLogin)}</p>
         </div>
       </div>

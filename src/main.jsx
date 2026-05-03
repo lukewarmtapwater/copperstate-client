@@ -22,6 +22,7 @@ import UserDataLoader from "./features/users/loaders/user-data-loader";
 import ChangeRoleAction from "./features/users/actions/change-role-action";
 import Car from "./features/cars/pages/car";
 import CarLoader from "./features/cars/loaders/car-loader";
+import updateStatusAction from "./features/cars/actions/update-status-action";
 
 const loader = <Loader className="mt-10" />;
 const router = createBrowserRouter([
@@ -82,6 +83,7 @@ const router = createBrowserRouter([
         path: "/inventory/:carId",
         Component: Car,
         loader: CarLoader,
+        action: updateStatusAction,
       },
     ],
   },

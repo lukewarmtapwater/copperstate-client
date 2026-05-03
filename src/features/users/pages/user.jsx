@@ -3,7 +3,6 @@ import DashboardSection from "../../../components/dashboard-section";
 import DashboardContainer from "../../../components/dashboard-container";
 import formatDateTime from "../../../utils/formatDateTime";
 import Dropdown from "../../../components/dropdown";
-import roles from "../../../utils/roles";
 import Car from "../../../components/car";
 import DataItem from "../../../components/data-item";
 import { useState } from "react";
@@ -18,10 +17,13 @@ function User() {
   const currentUser = useRouteLoaderData("dashboard-layout");
   const { cars, user } = useLoaderData();
   const submit = useSubmit();
-  const [role, setRole] = useState(roles[user.role]);
+  const [role, setRole] = useState(user.role);
 
   async function handleChange(newRole) {
-    await submit({ newRole, userId: user._id }, { method: "post" });
+    await submit(
+      { newRole: newRole.toLowerCase(), userId: user._id },
+      { method: "post" },
+    );
     setRole(newRole);
   }
 
@@ -30,11 +32,11 @@ function User() {
       <DashboardSection
         title="Details"
         header={
-          currentUser.role === 0 && (
+          currentUser.role === "admin" && (
             <>
               <Dropdown
                 value={role}
-                options={roles}
+                options={["admin", "inspector", "mechanic", "unassigned"]}
                 onChange={handleChange}
                 updateNavigationState={true}
               />
@@ -53,11 +55,11 @@ function User() {
           Icon={RiIdCardLine}
           value={user._id}
         />
-        <DataItem text="Role" Icon={RiAdminLine} value={roles[user.role]} />
+        <DataItem text="Role" Icon={RiAdminLine} value={user.role} />
         <DataItem
           text="Created on"
           Icon={RiCalendarView}
-          value={formatDateTime(user.accountCreated)}
+          value={formatDateTime(user.createdOn)}
         />
         <DataItem
           text="Last Login"
