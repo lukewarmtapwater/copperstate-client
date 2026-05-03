@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:3000";
+const SERVER_URL = "https://copperstate-server.vercel.app";
 
 async function request(endpoint, { method = "GET", body } = {}) {
   const res = await fetch(SERVER_URL + endpoint, {
