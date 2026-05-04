@@ -11,12 +11,13 @@ function Car({ car }) {
         </h4>
         <div className="mt-6 ml-2">
           <p>
-            Created by: <Link to={`/user/${car.postedBy}`}>{car.postedBy}</Link>
+            Created by:{" "}
+            <Link to={`/user/${car.createdBy}`}>{car.createdBy}</Link>
           </p>
           <p>Location: {car.location}</p>
         </div>
       </div>
-      <NavButton to={`/inventory/${car._id}`}>
+      <NavButton to={`/inventory/${car.id}`}>
         Open Details <RiArrowDropRightLine />
       </NavButton>
     </div>

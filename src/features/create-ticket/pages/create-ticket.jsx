@@ -22,11 +22,9 @@ function CreateTicket() {
             <Input id="make" label="Make" />
             <Input id="model" label="Model" />
           </div>
-          <div className="flex gap-3">
-            <Input id="location" label="Current Location" />
-            <Input type="number" id="daysOnLot" label="Days on Lot" />
-          </div>
+          <Input id="location" label="Current Location" />
         </DashboardSection>
+
         <DashboardSection title="Status">
           <DropdownField
             id="status"
@@ -34,32 +32,33 @@ function CreateTicket() {
             options={["Awaiting Inspection", "Inspected"]}
           />
         </DashboardSection>
+
         <DashboardSection
           title="Inspection"
-          parentClassName="flex flex-wrap gap-4"
+          parentClassName="flex flex-col gap-3"
         >
           <DropdownField
             id="windshield"
-            text="Windshield"
-            options={["Needed", "Not Needed", "Ordered"]}
+            text="Windshield Damage"
+            options={["none", "light", "severe"]}
           />
           <DropdownField
             id="rimDamage"
             text="Rim Damage"
-            options={["Light", "Medium", "Severe"]}
+            options={["none", "light", "severe"]}
           />
           <DropdownField
-            id="upholstery"
-            text="Upholstery"
-            options={["Light", "Medium", "Severe"]}
+            id="camera"
+            text="Camera Issue"
+            options={["yes", "no"]}
           />
-          <DropdownField id="camera" text="Camera" options={["Yes", "No"]} />
           <DropdownField
             id="steering"
-            text="Power Steering"
-            options={["Yes", "No"]}
+            text="Power Steering Issue"
+            options={["yes", "no"]}
           />
         </DashboardSection>
+
         <Button updateNavigationState={true}>Create Ticket</Button>
       </DashboardContainer>
     </Form>
@@ -69,16 +68,12 @@ function CreateTicket() {
 function DropdownField({ id, text, value, options }) {
   const [v, setValue] = useState(value || options[0]);
 
-  function handleChange(newValue) {
-    setValue(newValue);
-  }
-
   return (
     <div className="flex items-center justify-between gap-3">
       <div>
         <p>{text}</p>
       </div>
-      <Dropdown id={id} value={v} options={options} onChange={handleChange} />
+      <Dropdown id={id} value={v} options={options} onChange={setValue} />
     </div>
   );
 }

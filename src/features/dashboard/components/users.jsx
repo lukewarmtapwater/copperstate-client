@@ -28,7 +28,7 @@ function User({ user }) {
           <p>Last login: {formatDateTime(user.lastLogin)}</p>
         </div>
       </div>
-      <NavButton to={`/user/${user._id}`}>
+      <NavButton to={`/user/${user.id}`}>
         Open Details <RiArrowDropRightLine />
       </NavButton>
     </div>

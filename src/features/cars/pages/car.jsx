@@ -6,10 +6,10 @@ import {
   RiCalendarView,
   RiCameraLine,
   RiCarLine,
-  RiFilePdf2Line,
   RiFlagLine,
   RiIdCardLine,
   RiMapPinLine,
+  RiMore2Line,
   RiSeoLine,
   RiSteering2Line,
   RiUser2Line,
@@ -22,12 +22,12 @@ import generateCarReport from "../../../utils/generateCarReport";
 
 function Car() {
   const car = useLoaderData();
-  const [status, setStatus] = useState(car.status.value);
+  const [status, setStatus] = useState(car.status);
   const [generating, setGenerating] = useState(false);
   const submit = useSubmit();
 
   async function handleChange(newStatus) {
-    await submit({ newStatus, carId: car._id }, { method: "PATCH" });
+    await submit({ newStatus, carId: car.id }, { method: "PATCH" });
     setStatus(newStatus);
   }
 
@@ -41,15 +41,16 @@ function Car() {
     <DashboardContainer
       title="Car Details"
       header={
-        <Button
-          type="button"
-          variant="outline"
-          loading={generating}
-          onClick={handleGenerateReport}
-        >
-          <RiFilePdf2Line className="w-6 h-6" />
-          Generate Report
-        </Button>
+        <Dropdown
+          options={["Generate Report"]}
+          onChange={handleGenerateReport}
+          align="right"
+          trigger={
+            <Button type="button" variant="ghost" loading={generating}>
+              <RiMore2Line className="w-5 h-5" />
+            </Button>
+          }
+        />
       }
     >
       <DashboardSection
@@ -67,19 +68,19 @@ function Car() {
         <DataItem
           text="Status"
           Icon={RiFlagLine}
-          value={car.status.value}
+          value={car.status}
           first={true}
         />
         <DataItem
           text="Last Updated"
           Icon={RiCalendarView}
-          value={formatDateTime(car.status.lastUpdated)}
+          value={formatDateTime(car.statusLastUpdated)}
         />
         <DataItem
           text="Updated By"
           Icon={RiUser2Line}
-          value={car.status.updatedBy}
-          redirect={`/user/${car.status.updatedBy}`}
+          value={car.statusUpdatedBy}
+          redirect={`/user/${car.statusUpdatedBy}`}
           last={true}
         />
       </DashboardSection>
@@ -90,13 +91,13 @@ function Car() {
         <DataItem
           text="System Assigned ID"
           Icon={RiIdCardLine}
-          value={car._id}
+          value={car.id}
         />
         <DataItem
-          text="Posted by"
+          text="Created by"
           Icon={RiUser2Line}
-          redirect={`/user/${car.postedBy}`}
-          value={car.postedBy}
+          redirect={`/user/${car.createdBy}`}
+          value={car.createdBy}
         />
         <DataItem
           text="Created on"
@@ -114,28 +115,19 @@ function Car() {
         <DataItem
           text="Rim Damage"
           Icon={RiSeoLine}
-          value={car.inspection.rimDamage}
+          value={car.rimDamage}
           first={true}
         />
         <DataItem
-          text="Windshield"
+          text="Windshield Damage"
           Icon={RiSeoLine}
-          value={car.inspection.windshield}
+          value={car.windshield}
         />
+        <DataItem text="Camera Issue" Icon={RiCameraLine} value={car.camera} />
         <DataItem
-          text="Camera"
-          Icon={RiCameraLine}
-          value={car.inspection.camera}
-        />
-        <DataItem
-          text="Upholstery"
-          Icon={RiSeoLine}
-          value={car.inspection.upholstery}
-        />
-        <DataItem
-          text="Power Steering"
+          text="Power Steering Issue"
           Icon={RiSteering2Line}
-          value={car.inspection.steering}
+          value={car.steering}
           last={true}
         />
       </DashboardSection>

@@ -9,6 +9,8 @@ function Dropdown({
   onChange,
   updateNavigationState = false,
   placeholder = "",
+  trigger = null,
+  align = "left",
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef();
@@ -26,19 +28,26 @@ function Dropdown({
 
   return (
     <div ref={ref} className="relative">
-      <input type="hidden" id={id} name={id} value={value} />
-
-      <Button
-        type="button"
-        updateNavigationState={updateNavigationState}
-        onClick={() => setOpen((p) => !p)}
-      >
-        {value || placeholder}
-        {open ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
-      </Button>
+      {trigger ? (
+        <div onClick={() => setOpen((p) => !p)}>{trigger}</div>
+      ) : (
+        <>
+          <input type="hidden" id={id} name={id} value={value} />
+          <Button
+            type="button"
+            updateNavigationState={updateNavigationState}
+            onClick={() => setOpen((p) => !p)}
+          >
+            {value || placeholder}
+            {open ? <RiArrowUpSLine /> : <RiArrowDownSLine />}
+          </Button>
+        </>
+      )}
 
       {open && (
-        <div className="z-[50] absolute mt-2 w-max max-h-80 overflow-y-auto border border-muted rounded-md bg-background">
+        <div
+          className={`z-[50] absolute mt-2 w-max max-h-80 overflow-y-auto border border-muted rounded-md bg-background ${align === "right" ? "right-0" : "left-0"}`}
+        >
           {options.map((opt) => (
             <div
               key={opt}

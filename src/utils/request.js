@@ -1,7 +1,5 @@
-const SERVER_URL = "https://copperstate-server.vercel.app";
-
 async function request(endpoint, { method = "GET", body } = {}) {
-  const res = await fetch(SERVER_URL + endpoint, {
+  const res = await fetch(import.meta.env.VITE_SERVER_URL + endpoint, {
     method,
     credentials: "include",
     headers: {

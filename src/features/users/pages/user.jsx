@@ -21,7 +21,7 @@ function User() {
 
   async function handleChange(newRole) {
     await submit(
-      { newRole: newRole.toLowerCase(), userId: user._id },
+      { newRole: newRole.toLowerCase(), userId: user.id },
       { method: "PATCH" },
     );
     setRole(newRole);
@@ -53,7 +53,7 @@ function User() {
         <DataItem
           text="System Assigned ID"
           Icon={RiIdCardLine}
-          value={user._id}
+          value={user.id}
         />
         <DataItem text="Role" Icon={RiAdminLine} value={user.role} />
         <DataItem
@@ -74,7 +74,7 @@ function User() {
         parentClassName="flex flex-col gap-4"
       >
         {cars.length ? (
-          cars.map((car) => <Car car={car} key={car._id} />)
+          cars.map((car) => <Car car={car} key={car.id} />)
         ) : (
           <p>No cars found.</p>
         )}

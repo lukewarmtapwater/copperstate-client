@@ -82,7 +82,7 @@ async function generateCarReport(car) {
     align: "center",
   });
   doc.text(
-    `Generated: ${formatDateTime(new Date().toISOString())}  ·  ID: ${car._id}`,
+    `Generated: ${formatDateTime(new Date().toISOString())}  ·  ID: ${car.id}`,
     pageW / 2,
     afterLogo + 22,
     { align: "center" },
@@ -100,9 +100,9 @@ async function generateCarReport(car) {
     startY: cursor + 4,
     head: [["Field", "Value"]],
     body: [
-      ["Current Status", car.status.value],
-      ["Last Updated", formatDateTime(car.status.lastUpdated)],
-      ["Updated By", String(car.status.updatedBy)],
+      ["Current Status", car.status],
+      ["Last Updated", formatDateTime(car.statusLastUpdated)],
+      ["Updated By", String(car.statusUpdatedBy)],
     ],
   });
 
@@ -117,10 +117,9 @@ async function generateCarReport(car) {
       ["Model", car.model],
       ["Year", String(car.year)],
       ["Location", car.location],
-      ["Days on Lot", String(car.daysOnLot)],
-      ["Posted By", String(car.postedBy)],
+      ["Created By", String(car.createdBy)],
       ["Created On", formatDateTime(car.createdOn)],
-      ["System ID", String(car._id)],
+      ["System ID", String(car.id)],
     ],
   });
 
@@ -131,11 +130,10 @@ async function generateCarReport(car) {
     startY: cursor + 4,
     head: [["Field", "Value"]],
     body: [
-      ["Rim Damage", car.inspection.rimDamage],
-      ["Windshield", car.inspection.windshield],
-      ["Camera", car.inspection.camera],
-      ["Power Steering", car.inspection.steering],
-      ["Upholstery", car.inspection.upholstery],
+      ["Rim Damage", car.rimDamage],
+      ["Windshield Damage", car.windshield],
+      ["Camera Issue", car.camera],
+      ["Power Steering Issue", car.steering],
     ],
   });
 
@@ -149,7 +147,7 @@ async function generateCarReport(car) {
     { align: "center" },
   );
 
-  doc.save(`CopperState-${car.year}-${car.make}-${car.model}-${car._id}.pdf`);
+  doc.save(`CopperState-${car.year}-${car.make}-${car.model}-${car.id}.pdf`);
 }
 
 export default generateCarReport;

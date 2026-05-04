@@ -27,7 +27,7 @@ function Inventory() {
         parentClassName="flex flex-col gap-4"
       >
         {cars.length ? (
-          cars.map((car) => <Car car={car} key={car._id} />)
+          cars.map((car) => <Car car={car} key={car.id} />)
         ) : (
           <p>No cars found.</p>
         )}
