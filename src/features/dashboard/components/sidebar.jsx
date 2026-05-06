@@ -2,42 +2,31 @@ import {
   RiDashboardLine,
   RiFileListLine,
   RiFileAddLine,
-  RiArrowDropLeftLine,
-  RiLogoutBoxRLine,
 } from "@remixicon/react";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useSubmit } from "react-router";
 import Button from "../../../components/button";
-import request from "../../../utils/request";
+import Input from "../../../components/input";
+import { formatRole } from "../../../utils/roles";
 
-function Sidebar({ user, sidebar, setSidebar }) {
-  const navigate = useNavigate();
+function Sidebar({ user, sidebar }) {
+  const submit = useSubmit();
 
   async function handleLogout() {
-    try {
-      await request("/users/logout", { method: "POST" });
-    } finally {
-      navigate("/login");
-    }
+    submit({}, { method: "post", action: "/dashboard" });
   }
 
   return (
     sidebar && (
-      <div className="z-[100] absolute bg-white sm:static w-[260px] h-screen py-6 px-4 border-r border-muted flex flex-col">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#FFA211] via-[#FF6C00] to-[#D95A0F]"></div>
-            <div>
-              <h4 className="-mb-[1px]">{user.email.split("@")[0]}</h4>
-              <p className="text-xs">{user.role}</p>
-            </div>
+      <div className="z-[100] absolute bg-white sm:static w-[260px] h-screen py-5 px-3 border-r border-muted flex flex-col gap-5">
+        <div className="flex items-center gap-3">
+          <h4>{user.email.split("@")[0]}</h4>
+          <div className="text-xs bg-foreground rounded-full px-2 py-1 text-white">
+            {formatRole(user.role)}
           </div>
-          <Button variant="ghost" onClick={() => setSidebar(false)}>
-            <RiArrowDropLeftLine />
-          </Button>
         </div>
 
-        <nav className="flex flex-col gap-2 mt-6 [&>h4]:text-xs [&>h4]:text-foreground/50 [&>h4]:my-1">
-          <h4>MENU</h4>
+        <nav className="flex flex-col gap-3">
+          <Input id="search" placeholder="Search..." className="py-2" />
           <SidebarButton
             text="Dashboard"
             icon={<RiDashboardLine />}
@@ -59,9 +48,13 @@ function Sidebar({ user, sidebar, setSidebar }) {
           )}
         </nav>
 
-        <Button type="button" onClick={handleLogout} className="w-full mt-auto">
-          Logout
-          <RiLogoutBoxRLine />
+        <Button
+          type="button"
+          onClick={handleLogout}
+          className="w-full mt-auto"
+          updateNavigationState={true}
+        >
+          Log out
         </Button>
       </div>
     )
@@ -74,18 +67,13 @@ function SidebarButton({ text, icon, to }) {
       {({ isActive, isPending }) => (
         <Button
           variant="ghost"
-          className={`w-full gap-3 py-3
-            ${
-              isActive
-                ? "text-primary hover:bg-primary/10 hover:text-primary"
-                : "text-foreground hover:bg-subtle"
-            }
+          className={`w-full gap-2
+            ${isActive && "text-primary bg-subtle"}
             ${!isPending && "justify-start"}
           `}
           loading={isPending}
         >
-          {isActive && <div className="w-1 h-4 rounded-full bg-primary"></div>}
-          <div className="w-6 h-6 mb-[3px]">{icon}</div>
+          {icon}
           {text}
         </Button>
       )}

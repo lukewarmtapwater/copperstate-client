@@ -5,11 +5,11 @@ import AuthForm from "../components/AuthForm";
 function SignUp() {
   return (
     <AuthForm
-      title="Create an account"
-      btnContent="Sign up"
+      title="Create an Account"
+      btnText="Sign up"
       link={
         <>
-          Already have an account? <Link to="/login">Login</Link>
+          Already have an account? <Link to="/login">Login.</Link>
         </>
       }
     >

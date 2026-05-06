@@ -14,7 +14,7 @@ function DataItem({
     <div
       className={twMerge(
         "flex flex-col sm:flex-row sm:items-center justify-between gap-2 border border-muted border-b-0 px-3 py-3",
-        first && "rounded-t-md",
+        first && "rounded-t-md mt-4",
         last && "border-b rounded-b-md",
         className,
       )}

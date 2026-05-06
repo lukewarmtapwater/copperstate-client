@@ -15,7 +15,7 @@ function CreateTicket() {
       >
         <DashboardSection
           title="General Information"
-          parentClassName="flex flex-col gap-3"
+          className="flex flex-col gap-3 mt-4"
         >
           <div className="flex gap-3">
             <Input type="number" id="year" label="Year" />
@@ -33,10 +33,7 @@ function CreateTicket() {
           />
         </DashboardSection>
 
-        <DashboardSection
-          title="Inspection"
-          parentClassName="flex flex-col gap-3"
-        >
+        <DashboardSection title="Inspection" className="flex flex-col gap-3">
           <DropdownField
             id="windshield"
             text="Windshield Damage"

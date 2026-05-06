@@ -8,7 +8,7 @@ import "./index.css";
 import authAction from "./features/auth/actions/auth-action";
 import authLoader from "./features/auth/loaders/auth-loader";
 import userLoader from "./features/dashboard/loaders/user-loader";
-import usersLoader from "./features/dashboard/loaders/users-loader";
+import dataLoader from "./features/dashboard/loaders/data-loader";
 import inventoryLoader from "./features/inventory/loaders/inventory-loader";
 import UserDataLoader from "./features/users/loaders/user-data-loader";
 import ChangeRoleAction from "./features/users/actions/change-role-action";
@@ -16,6 +16,7 @@ import CarLoader from "./features/cars/loaders/car-loader";
 import updateStatusAction from "./features/cars/actions/update-status-action";
 import ticketAction from "./features/create-ticket/actions/ticket-action";
 import Loader from "./components/loader";
+import LogOutAction from "./features/dashboard/actions/log-out-action";
 
 const loader = <Loader className="mt-10" />;
 
@@ -60,7 +61,8 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         hydrateFallbackElement: loader,
-        loader: usersLoader,
+        loader: dataLoader,
+        action: LogOutAction,
         lazy: async () => ({
           Component: (await import("./features/dashboard/pages/dashboard"))
             .default,

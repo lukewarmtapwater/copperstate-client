@@ -1,13 +1,12 @@
 import { Outlet, useLoaderData, useLocation } from "react-router";
 import Sidebar from "../components/sidebar";
-import Logo from "../../../components/logo";
 import { useEffect, useRef, useState } from "react";
-import { RiMenuLine } from "@remixicon/react";
+import Nav from "../components/top-bar";
 
 function DashboardLayout() {
   const user = useLoaderData();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [sidebar, setSidebar] = useState(window.innerWidth > 768);
+  const [sidebar, setSidebar] = useState(!isMobile);
   const pathname = useLocation();
   const ref = useRef();
 
@@ -32,24 +31,14 @@ function DashboardLayout() {
   return (
     <div className="flex max-h-screen">
       <Sidebar user={user} sidebar={sidebar} setSidebar={setSidebar} />
-      <div
-        className="flex flex-col gap-16 flex-1 py-6 px-5 sm:px-8 overflow-y-scroll overflow-x-hidden"
-        ref={ref}
-      >
-        <div className="flex justify-between items-center py-2">
-          <div>
-            {!sidebar && (
-              <RiMenuLine
-                className="w-7 h-7 cursor-pointer hover:text-primary"
-                onClick={() => setSidebar(true)}
-              />
-            )}
-          </div>
-
-          <Logo />
+      <div className="flex flex-col flex-1 overflow-hidden">
+        <Nav sidebar={sidebar} setSidebar={setSidebar} />
+        <div
+          className="py-10 px-5 overflow-y-scroll overflow-x-hidden"
+          ref={ref}
+        >
+          <Outlet context={{ user }} />
         </div>
-
-        <Outlet context={{ user }} />
       </div>
     </div>
   );

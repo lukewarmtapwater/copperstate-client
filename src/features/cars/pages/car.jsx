@@ -9,7 +9,7 @@ import {
   RiFlagLine,
   RiIdCardLine,
   RiMapPinLine,
-  RiMore2Line,
+  RiMoreLine,
   RiSeoLine,
   RiSteering2Line,
   RiUser2Line,
@@ -22,9 +22,10 @@ import generateCarReport from "../../../utils/generateCarReport";
 
 function Car() {
   const car = useLoaderData();
+  const submit = useSubmit();
+
   const [status, setStatus] = useState(car.status);
   const [generating, setGenerating] = useState(false);
-  const submit = useSubmit();
 
   async function handleChange(newStatus) {
     await submit({ newStatus, carId: car.id }, { method: "PATCH" });
@@ -47,7 +48,7 @@ function Car() {
           align="right"
           trigger={
             <Button type="button" variant="ghost" loading={generating}>
-              <RiMore2Line className="w-5 h-5" />
+              <RiMoreLine />
             </Button>
           }
         />
@@ -55,6 +56,7 @@ function Car() {
     >
       <DashboardSection
         title="Status"
+        className="gap-0"
         header={
           <Dropdown
             id="status"
@@ -84,7 +86,7 @@ function Car() {
           last={true}
         />
       </DashboardSection>
-      <DashboardSection title="General Information">
+      <DashboardSection title="General Information" className="gap-0">
         <DataItem text="Make" Icon={RiCarLine} value={car.make} first={true} />
         <DataItem text="Model" Icon={RiCarLine} value={car.model} />
         <DataItem text="Year" Icon={RiCalendarView} value={car.year} />
@@ -111,7 +113,7 @@ function Car() {
           last={true}
         />
       </DashboardSection>
-      <DashboardSection title="Inspection">
+      <DashboardSection title="Inspection" className="gap-0">
         <DataItem
           text="Rim Damage"
           Icon={RiSeoLine}

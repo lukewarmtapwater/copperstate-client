@@ -1,8 +1,9 @@
-import DashboardSection from "../../../components/dashboard-section";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import NumberBox from "../../../components/number-box";
 import DashboardContainer from "../../../components/dashboard-container";
 import Car from "../../../components/car";
+import DashboardSection from "../../../components/dashboard-section";
+import { RiArrowDropRightLine } from "@remixicon/react";
 
 function Inventory() {
   const { cars } = useLoaderData();
@@ -22,17 +23,34 @@ function Inventory() {
         footer={`${createdToday} car posted today.`}
         value={cars.length}
       />
-      <DashboardSection
-        title="Cars in Inventory"
-        parentClassName="flex flex-col gap-4"
-      >
-        {cars.length ? (
-          cars.map((car) => <Car car={car} key={car.id} />)
-        ) : (
-          <p>No cars found.</p>
-        )}
-      </DashboardSection>
+      <div>
+        <Cars cars={cars} />
+      </div>
     </DashboardContainer>
+  );
+}
+
+export function Cars({ cars, showHeader = false }) {
+  return (
+    <DashboardSection
+      title="Inventory"
+      header={
+        showHeader && (
+          <Link className="flex" to="/inventory">
+            View All <RiArrowDropRightLine />
+          </Link>
+        )
+      }
+    >
+      {cars.length ? (
+        cars.map((car) => <Car car={car} key={car.id} />)
+      ) : (
+        <p>No cars found.</p>
+      )}
+      <p>
+        Showing {cars.length} of {cars.length} result(s)
+      </p>
+    </DashboardSection>
   );
 }
 

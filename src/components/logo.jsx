@@ -2,7 +2,7 @@ function Logo({ className = "" }) {
   return (
     <img
       src="/images/logo.png"
-      className={`w-[160px] sm:w-[190px] ${className}`}
+      className={`w-[160px] sm:w-[180px] ${className}`}
     />
   );
 }

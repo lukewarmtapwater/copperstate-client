@@ -1,8 +1,11 @@
+import DashboardContainer from "../../../components/dashboard-container";
+
 function NoAccess() {
   return (
-    <p className="text-danger">
-      You haven't been assigned a role yet by a manager or higher.
-    </p>
+    <DashboardContainer
+      title="No Access"
+      description="You haven't been assigned a role yet by a manager or higher."
+    />
   );
 }
 

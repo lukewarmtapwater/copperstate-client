@@ -4,10 +4,9 @@ function NumberBox({ title, footer = "", value }) {
   return (
     <DashboardSection
       title={title}
-      expandable={false}
-      sectionclassName="w-full sm:w-max"
+      className="w-full sm:w-max flex-none gap-0 rounded-md py-6 px-6 border border-muted shadow-sm"
     >
-      <h1 className="text-primary mb-2">{value}</h1>
+      <h1 className="text-primary mt-5">{value}</h1>
       <p>{footer}</p>
     </DashboardSection>
   );

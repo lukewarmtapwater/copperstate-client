@@ -12,12 +12,14 @@ import {
   RiIdCardLine,
   RiMailLine,
 } from "@remixicon/react";
+import { roles, formatRole } from "../../../utils/roles";
 
 function User() {
   const currentUser = useRouteLoaderData("dashboard-layout");
   const { cars, user } = useLoaderData();
   const submit = useSubmit();
-  const [role, setRole] = useState(user.role);
+
+  const [role, setRole] = useState(formatRole(user.role));
 
   async function handleChange(newRole) {
     await submit(
@@ -31,12 +33,13 @@ function User() {
     <DashboardContainer title="User Details">
       <DashboardSection
         title="Details"
+        className="gap-0"
         header={
           currentUser.role === "admin" && (
             <>
               <Dropdown
                 value={role}
-                options={["admin", "inspector", "mechanic", "unassigned"]}
+                options={roles}
                 onChange={handleChange}
                 updateNavigationState={true}
               />
@@ -55,7 +58,11 @@ function User() {
           Icon={RiIdCardLine}
           value={user.id}
         />
-        <DataItem text="Role" Icon={RiAdminLine} value={user.role} />
+        <DataItem
+          text="Role"
+          Icon={RiAdminLine}
+          value={formatRole(user.role)}
+        />
         <DataItem
           text="Created on"
           Icon={RiCalendarView}
@@ -69,10 +76,7 @@ function User() {
         />
       </DashboardSection>
 
-      <DashboardSection
-        title="Cars Posted"
-        parentClassName="flex flex-col gap-4"
-      >
+      <DashboardSection title="Cars Posted">
         {cars.length ? (
           cars.map((car) => <Car car={car} key={car.id} />)
         ) : (

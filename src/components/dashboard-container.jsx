@@ -1,7 +1,10 @@
+import { twMerge } from "tailwind-merge";
+
 function DashboardContainer({
   title,
   description = "",
   header = <></>,
+  className = "",
   children,
 }) {
   return (
@@ -11,7 +14,9 @@ function DashboardContainer({
         {header}
       </div>
       <p>{description}</p>
-      {children}
+      <div className={twMerge("flex flex-col gap-8", className)}>
+        {children}
+      </div>
     </div>
   );
 }
