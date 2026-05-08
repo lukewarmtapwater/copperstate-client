@@ -19,6 +19,8 @@ import Dropdown from "../../../components/dropdown";
 import Button from "../../../components/button";
 import { useState } from "react";
 import generateCarReport from "../../../utils/generateCarReport";
+import ImageSlider from "../../../components/image-slider";
+import Image from "../../../components/image";
 
 function Car() {
   const car = useLoaderData();
@@ -54,12 +56,15 @@ function Car() {
         />
       }
     >
+      <DashboardSection title="Images">
+        <ImageSlider images={car.images} />
+      </DashboardSection>
       <DashboardSection
         title="Status"
         className="gap-0"
         header={
           <Dropdown
-            id="status"
+            id="newStatus"
             value={status}
             options={["Awaiting Inspection", "Inspected"]}
             onChange={handleChange}

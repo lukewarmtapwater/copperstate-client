@@ -1,16 +1,12 @@
 import requestUtil from "../../../utils/request";
 
 async function ChangeRoleAction({ request }) {
-  const { newRole, userId } = Object.fromEntries(await request.formData());
+  const formData = await request.formData();
 
-  const res = await requestUtil(`/users/${userId}/role`, {
+  await requestUtil(`/users/${formData.get("userId")}/role`, {
     method: "PATCH",
-    body: { newRole },
+    body: { newRole: formData.get("newRole") },
   });
-
-  if (res.ok) {
-    return newRole;
-  }
 
   return;
 }

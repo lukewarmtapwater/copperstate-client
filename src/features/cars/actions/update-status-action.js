@@ -1,16 +1,12 @@
 import requestUtil from "../../../utils/request";
 
 async function updateStatusAction({ request }) {
-  const { carId, newStatus } = Object.fromEntries(await request.formData());
+  const formData = await request.formData();
 
-  const res = await requestUtil(`/inventory/${carId}/status`, {
+  await requestUtil(`/inventory/${formData.get("carId")}/status`, {
     method: "PATCH",
-    body: { newStatus },
+    body: formData,
   });
-
-  if (res.ok) {
-    return newStatus;
-  }
 
   return;
 }

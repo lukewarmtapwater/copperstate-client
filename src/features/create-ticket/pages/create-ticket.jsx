@@ -5,10 +5,11 @@ import { Form } from "react-router";
 import { useState } from "react";
 import Button from "../../../components/button";
 import DashboardContainer from "../../../components/dashboard-container";
+import FileInput from "../../../components/file-input";
 
 function CreateTicket() {
   return (
-    <Form method="post">
+    <Form method="post" encType="multipart/form-data">
       <DashboardContainer
         title="New Ticket"
         description="Submit a ticket and track your request."
@@ -54,6 +55,10 @@ function CreateTicket() {
             text="Power Steering Issue"
             options={["yes", "no"]}
           />
+        </DashboardSection>
+
+        <DashboardSection title="Images">
+          <FileInput id="images" />
         </DashboardSection>
 
         <Button updateNavigationState={true}>Create Ticket</Button>

@@ -12,7 +12,7 @@ import {
   RiIdCardLine,
   RiMailLine,
 } from "@remixicon/react";
-import { roles, formatRole } from "../../../utils/roles";
+import { roles, formatRole, getKey } from "../../../utils/roles";
 
 function User() {
   const currentUser = useRouteLoaderData("dashboard-layout");
@@ -22,10 +22,9 @@ function User() {
   const [role, setRole] = useState(formatRole(user.role));
 
   async function handleChange(newRole) {
-    await submit(
-      { newRole: newRole.toLowerCase(), userId: user.id },
-      { method: "PATCH" },
-    );
+    const newRoleKey = getKey(newRole);
+
+    await submit({ newRole: newRoleKey, userId: user.id }, { method: "PATCH" });
     setRole(newRole);
   }
 

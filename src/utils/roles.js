@@ -1,5 +1,5 @@
 const rolesObject = {
-  admin: "Manager",
+  admin: "Admin",
   inspector: "Inspector",
   mechanic: "Mechanic",
   unassigned: "Unassigned",
@@ -11,4 +11,8 @@ function formatRole(role) {
   return rolesObject[role];
 }
 
-export { formatRole, roles };
+function getKey(value) {
+  return Object.keys(rolesObject).find((key) => rolesObject[key] === value);
+}
+
+export { formatRole, roles, getKey };

@@ -16,7 +16,11 @@ function AuthForm({ title, btnText, link, children }) {
         )}
       </div>
       <div className="flex flex-col items-center gap-3 mt-auto">
-        <Button className="w-full py-3" updateNavigationState={true}>
+        <Button
+          className="w-full py-3"
+          type="submit"
+          updateNavigationState={true}
+        >
           {btnText}
         </Button>
         <p>{link}</p>

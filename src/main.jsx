@@ -1,9 +1,9 @@
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter, Link } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import AccountLayout from "./features/auth/layouts/account-layout";
 import DashboardLayout from "./features/dashboard/layouts/dashboard-layout";
-import Index from "./features/index";
+import Index from "./index";
 import "./index.css";
 import authAction from "./features/auth/actions/auth-action";
 import authLoader from "./features/auth/loaders/auth-loader";
@@ -19,8 +19,21 @@ import Loader from "./components/loader";
 import LogOutAction from "./features/dashboard/actions/log-out-action";
 
 const loader = <Loader className="mt-10" />;
+const Error = () => {
+  return <h4 className="m-3">Oops! Something went wrong.</h4>;
+};
 
 const router = createBrowserRouter([
+  {
+    path: "*",
+    Component: function NotFound() {
+      return (
+        <h4 className="m-3">
+          You're lost! <Link to="/">Go back.</Link>
+        </h4>
+      );
+    },
+  },
   {
     path: "",
     Component: Index,
@@ -28,6 +41,7 @@ const router = createBrowserRouter([
   {
     Component: AccountLayout,
     loader: authLoader,
+    errorElement: <Error />,
     hydrateFallbackElement: loader,
     children: [
       {
@@ -52,6 +66,7 @@ const router = createBrowserRouter([
     id: "dashboard-layout",
     Component: DashboardLayout,
     loader: userLoader,
+    errorElement: <Error />,
     shouldRevalidate: ({ formAction, defaultShouldRevalidate }) => {
       if (formAction?.startsWith("/inventory/")) return false;
       return defaultShouldRevalidate;
