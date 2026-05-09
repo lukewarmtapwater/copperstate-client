@@ -30,7 +30,19 @@ function CreateTicket() {
           <DropdownField
             id="status"
             text="Status"
-            options={["Awaiting Inspection", "Inspected"]}
+            options={[
+              "Awaiting Inspection",
+              "Inspected",
+              "At warehouse",
+              "Body Shop - Waitlisted",
+              "Windshield-awa",
+              "Dent shop-waitlisted",
+              "At dent shop",
+              "Ready for Check-in",
+              "Detail Done",
+              "Detail Waitlisted",
+              "Sold",
+            ]}
           />
         </DashboardSection>
 

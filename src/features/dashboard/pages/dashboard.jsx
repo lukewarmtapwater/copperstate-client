@@ -7,7 +7,15 @@ import { Cars } from "../../../features/inventory/pages/inventory";
 
 function Dashboard() {
   const { user } = useOutletContext();
-  const { users, cars } = useLoaderData();
+  const { users, cars, createdToday } = useLoaderData();
+
+  const activeCars = cars.filter(car => {
+    if (car.status === "Sold") {
+      const daysSinceSold = (new Date() - new Date(car.statusLastUpdated)) / (1000 * 60 * 60 * 24);
+      return daysSinceSold <= 7;
+    }
+    return true;
+  });
 
   return user.role === "unassigned" ? (
     <NoAccess />
@@ -24,13 +32,15 @@ function Dashboard() {
         />
         <NumberBox
           title="Cars in Inventory"
-          value={cars.length}
-          footer="32 quit in less than 0.5 seconds."
+          value={activeCars.length}
+          footer={`${createdToday} car posted today.`}
         />
       </div>
       <div className="flex flex-wrap gap-6">
         <ManageUsers users={users} />
-        <Cars cars={cars} showHeader={true} />
+        <div className="flex flex-col gap-6 w-full lg:w-[calc(100%-400px-1.5rem)]">
+          <Cars cars={activeCars} showHeader={true} />
+        </div>
       </div>
     </DashboardContainer>
   );

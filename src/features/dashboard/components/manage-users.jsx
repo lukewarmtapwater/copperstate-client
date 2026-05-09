@@ -7,11 +7,13 @@ function ManageUsers({ users }) {
   return (
     <DashboardSection title="Manage Users">
       {users.length ? (
-        users.map((user, i) => <User user={user} key={user.id} />)
+        <>
+          {users.map((user, i) => <User user={user} key={user.id} />)}
+          <p>Showing {users.length} result(s)</p>
+        </>
       ) : (
         <p>No users found.</p>
       )}
-      <p>Showing {users.length} result(s)</p>
     </DashboardSection>
   );
 }

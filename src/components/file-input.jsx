@@ -1,5 +1,6 @@
-import { RiUploadLine } from "@remixicon/react";
-import { useRef, useState } from "react";
+import { RiUploadLine, RiCloseLine } from "@remixicon/react";
+import { useRef, useState, useEffect } from "react";
+import Button from "./button";
 import { useActionData } from "react-router";
 
 function FileInput({ id, onChange = () => {}, className = "" }) {
@@ -9,14 +10,11 @@ function FileInput({ id, onChange = () => {}, className = "" }) {
   const [files, setFiles] = useState([]);
   const inputRef = useRef();
 
-  const handleFiles = (selectedFiles) => {
-    const images = Array.from(selectedFiles).filter((f) =>
-      f.type.startsWith("image/"),
-    );
-
-    const updated = [...files, ...images];
-    setFiles(updated);
-    onChange(updated);
+  const handleFiles = (newFiles) => {
+    const filesArray = Array.from(newFiles);
+    const updatedFiles = [...files, ...filesArray];
+    setFiles(updatedFiles);
+    onChange(updatedFiles);
   };
 
   const onDrop = (e) => {
@@ -26,7 +24,22 @@ function FileInput({ id, onChange = () => {}, className = "" }) {
 
   const onSelect = (e) => {
     handleFiles(e.target.files);
+    e.target.value = "";
   };
+
+  const removeFile = (indexToRemove) => {
+    const updatedFiles = files.filter((_, index) => index !== indexToRemove);
+    setFiles(updatedFiles);
+    onChange(updatedFiles);
+  };
+
+  useEffect(() => {
+    if (inputRef.current) {
+      const dataTransfer = new DataTransfer();
+      files.forEach((file) => dataTransfer.items.add(file));
+      inputRef.current.files = dataTransfer.files;
+    }
+  }, [files]);
 
   return (
     <div className={`flex flex-col gap-3 ${className}`}>
@@ -52,6 +65,33 @@ function FileInput({ id, onChange = () => {}, className = "" }) {
         onChange={onSelect}
         className="hidden"
       />
+
+      {files.length > 0 && (
+        <div className="grid grid-cols-3 gap-3">
+          {files.map((file, index) => (
+            <div
+              key={`${file.name}-${index}-${file.lastModified}`}
+              className="relative group"
+            >
+              <img
+                src={URL.createObjectURL(file)}
+                alt={file.name}
+                className="w-full h-24 object-cover rounded-md border border-primary"
+                onLoad={(e) => URL.revokeObjectURL(e.target.src)}
+              />
+              <Button
+                onClick={() => removeFile(index)}
+                variant="ghost"
+                className="absolute top-1 right-1"
+                type="button"
+              >
+                <RiCloseLine className="text-muted" />
+              </Button>
+              <p className="text-xs mt-1 truncate">{file.name}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       <p>
         Uploaded: <span>{files.length}</span> image(s)

@@ -6,6 +6,10 @@ async function inventoryLoader() {
 
   if (res.ok) {
     const data = await res.json();
+    data.createdToday = data.cars.filter(
+      (car) =>
+        new Date(car.createdOn).toDateString() === new Date().toDateString(),
+    ).length;
     return data;
   }
 
