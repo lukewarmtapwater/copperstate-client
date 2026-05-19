@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Logo from "./components/logo";
 import {
   RiMenuLine,
   RiCloseLine,
@@ -51,7 +50,10 @@ export default function Index() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-between h-[68px]">
             <a href="#" className="hover:no-underline">
-              <Logo />
+              <img
+                src="/images/logo.png"
+                className=" w-[140px]"
+              />
             </a>
 
             <nav className="hidden md:flex items-center gap-7">
@@ -159,7 +161,7 @@ export default function Index() {
 
           <p className="text-lg max-w-xl mb-10">
             Built for registered dealers and internal teams — manage inventory,
-            status workflow, and wholesale purchasing all in one place.
+            status workflow, and wholesale purchasing all in one place!
           </p>
 
           <div className="flex flex-wrap gap-3 mb-24">

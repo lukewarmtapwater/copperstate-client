@@ -22,7 +22,7 @@ function ImageSlider({ images = [] }) {
   return (
     <>
       <div className="relative w-full">
-        <h4 className="absolute text-white m-3 z-10">
+        <h4 className="absolute text-subtle m-3 z-10">
           {current + 1}/{images.length}
         </h4>
         <div
@@ -52,9 +52,8 @@ function ImageSlider({ images = [] }) {
               {images.map((_, i) => (
                 <div
                   key={i}
-                  className={`w-2 h-2 rounded-full ${
-                    i === current ? "bg-foreground" : "bg-muted"
-                  }`}
+                  className={`w-2 h-2 rounded-full ${i === current ? "bg-foreground" : "bg-muted"
+                    }`}
                 />
               ))}
             </div>
@@ -67,7 +66,7 @@ function ImageSlider({ images = [] }) {
           <Button
             variant="ghost"
             onClick={() => setFullscreen(false)}
-            className="absolute top-4 right-4 text-white z-[300]"
+            className="absolute top-4 right-4 text-subtle z-[300]"
           >
             <RiCloseLine />
           </Button>
@@ -87,7 +86,7 @@ function ImageSlider({ images = [] }) {
                     prev();
                   }}
                   variant="ghost"
-                  className="absolute left-4 text-white"
+                  className="absolute left-4 text-subtle"
                 >
                   <RiArrowLeftSLine />
                 </Button>
@@ -98,12 +97,12 @@ function ImageSlider({ images = [] }) {
                     next();
                   }}
                   variant="ghost"
-                  className="absolute right-4 text-white"
+                  className="absolute right-4 text-subtle"
                 >
                   <RiArrowRightSLine />
                 </Button>
 
-                <h4 className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white bg-black px-3 py-1 rounded-full">
+                <h4 className="absolute bottom-4 left-1/2 -translate-x-1/2 text-subtle bg-black px-3 py-1 rounded-full">
                   {current + 1}/{images.length}
                 </h4>
               </>

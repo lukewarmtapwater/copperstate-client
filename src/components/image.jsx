@@ -11,12 +11,20 @@ function Image({ image, className = "", alt = "", ...props }) {
     let objectUrl;
 
     async function fetchImage() {
+      if (image instanceof File || (typeof image === 'string' && image.startsWith("blob:"))) {
+        objectUrl = image instanceof File ? URL.createObjectURL(image) : image;
+        setSrc(objectUrl);
+        setLoading(false);
+        return;
+      }
+
       const res = await request(`/uploads/${encodeURIComponent(image)}`);
 
       setLoading(false);
 
       if (!res.ok) {
         setError(true);
+        return;
       }
 
       const blob = await res.blob();
@@ -42,7 +50,7 @@ function Image({ image, className = "", alt = "", ...props }) {
   }
 
   if (error) {
-    return <p className="text-danger">Failed to load image.</p>;
+    return <p className="text-danger text-xs">Failed to load image.</p>;
   }
 
   return <img src={src} alt={alt} className={className} {...props} />;

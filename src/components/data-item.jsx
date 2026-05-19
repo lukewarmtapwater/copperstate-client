@@ -13,14 +13,14 @@ function DataItem({
   return (
     <div
       className={twMerge(
-        "flex flex-col sm:flex-row sm:items-center justify-between gap-2 border border-muted border-b-0 px-3 py-3",
+        "flex items-center justify-between border border-muted border-b-0 px-3 py-1.5",
         first && "rounded-t-md mt-4",
         last && "border-b rounded-b-md",
         className,
       )}
     >
       <div className="flex items-center gap-2">
-        <Icon className="w-6 h-6 mb-[2px] text-primary" />
+        <Icon className="text-primary" />
         <p>{text}</p>
       </div>
       {redirect ? (

@@ -5,7 +5,7 @@ import AuthForm from "../components/AuthForm";
 function Login() {
   return (
     <AuthForm
-      title="Welcome Back!"
+      title="Manage your Account"
       btnText="Login"
       link={
         <>

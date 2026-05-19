@@ -8,9 +8,9 @@ function DashboardContainer({
   children,
 }) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h2>{title}</h2>
+        <h1>{title}</h1>
         {header}
       </div>
       <p>{description}</p>

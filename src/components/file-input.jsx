@@ -2,12 +2,15 @@ import { RiUploadLine, RiCloseLine } from "@remixicon/react";
 import { useRef, useState, useEffect } from "react";
 import Button from "./button";
 import { useActionData } from "react-router";
+import Image from "./image";
 
-function FileInput({ id, onChange = () => {}, className = "" }) {
+function FileInput({ id, initialImages = [], onChange = () => { }, className = "" }) {
   const data = useActionData();
   const error = data?.fieldErrors?.[id]?.[0];
 
   const [files, setFiles] = useState([]);
+  const [existingImages, setExistingImages] = useState(initialImages);
+  const [deletedImages, setDeletedImages] = useState([]);
   const inputRef = useRef();
 
   const handleFiles = (newFiles) => {
@@ -27,10 +30,15 @@ function FileInput({ id, onChange = () => {}, className = "" }) {
     e.target.value = "";
   };
 
-  const removeFile = (indexToRemove) => {
-    const updatedFiles = files.filter((_, index) => index !== indexToRemove);
+  const removeFile = (fileToRemove) => {
+    const updatedFiles = files.filter((file) => file !== fileToRemove);
     setFiles(updatedFiles);
     onChange(updatedFiles);
+  };
+
+  const removeExistingImage = (imagePath) => {
+    setExistingImages(prev => prev.filter(img => img !== imagePath));
+    setDeletedImages(prev => [...prev, imagePath]);
   };
 
   useEffect(() => {
@@ -66,38 +74,37 @@ function FileInput({ id, onChange = () => {}, className = "" }) {
         className="hidden"
       />
 
-      {files.length > 0 && (
-        <div className="grid grid-cols-3 gap-3">
-          {files.map((file, index) => (
-            <div
-              key={`${file.name}-${index}-${file.lastModified}`}
-              className="relative group"
-            >
-              <img
-                src={URL.createObjectURL(file)}
-                alt={file.name}
-                className="w-full h-24 object-cover rounded-md border border-primary"
-                onLoad={(e) => URL.revokeObjectURL(e.target.src)}
+      {deletedImages.map((img) => (
+        <input key={img} type="hidden" name="deletedImages" value={img} />
+      ))}
+
+      {(existingImages.length > 0 || files.length > 0) && (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          {[
+            ...existingImages.map(img => ({ id: img, value: img, onRemove: () => removeExistingImage(img) })),
+            ...files.map(file => ({ id: `${file.name}-${file.lastModified}`, value: file, onRemove: () => removeFile(file) }))
+          ].map((item) => (
+            <div key={item.id} className="relative group aspect-square">
+              <Image
+                image={item.value}
+                alt="Car"
+                className="w-full h-full object-cover rounded-md border border-primary"
               />
               <Button
-                onClick={() => removeFile(index)}
-                variant="ghost"
-                className="absolute top-1 right-1"
+                onClick={item.onRemove}
+                variant="danger"
+                size="sm"
+                className="absolute top-2 right-2 h-6 w-6 p-0 rounded-md opacity-0 group-hover:opacity-100"
                 type="button"
               >
-                <RiCloseLine className="text-muted" />
+                <RiCloseLine />
               </Button>
-              <p className="text-xs mt-1 truncate">{file.name}</p>
             </div>
           ))}
         </div>
       )}
 
-      <p>
-        Uploaded: <span>{files.length}</span> image(s)
-      </p>
-
-      {error && <div className="text-danger">{error}</div>}
+      {error && <div className="text-danger text-sm">{error}</div>}
     </div>
   );
 }

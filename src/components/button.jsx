@@ -18,12 +18,12 @@ function Button({
       (navigation.state === "submitting" || navigation.state === "loading"));
 
   const base =
-    "w-max h-max flex items-center justify-center text-foreground gap-1 px-3 py-2 rounded-md";
+    "w-max h-max flex items-center justify-center text-black gap-1 px-3 py-1 rounded-md";
   const variants = {
     primary: "bg-primary hover:bg-primary/80",
     ghost: "bg-transparent text-foreground hover:text-primary",
     outline: "border border-primary text-primary hover:bg-primary/10",
-    danger: "bg-danger hover:bg-red-600",
+    danger: "bg-danger hover:bg-red-600 text-subtle",
   };
 
   return (

@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, Link } from "react-router";
+import { createBrowserRouter, Link, useRouteError } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import AccountLayout from "./features/auth/layouts/account-layout";
 import DashboardLayout from "./features/dashboard/layouts/dashboard-layout";
@@ -11,16 +11,28 @@ import userLoader from "./features/dashboard/loaders/user-loader";
 import dataLoader from "./features/dashboard/loaders/data-loader";
 import inventoryLoader from "./features/inventory/loaders/inventory-loader";
 import UserDataLoader from "./features/users/loaders/user-data-loader";
-import ChangeRoleAction from "./features/users/actions/change-role-action";
 import CarLoader from "./features/cars/loaders/car-loader";
-import updateStatusAction from "./features/cars/actions/update-status-action";
+import carAction from "./features/cars/actions/car-action";
 import ticketAction from "./features/create-ticket/actions/ticket-action";
 import Loader from "./components/loader";
 import LogOutAction from "./features/dashboard/actions/log-out-action";
+import userAction from "./features/users/actions/user-action";
 
 const loader = <Loader className="mt-10" />;
 const Error = () => {
-  return <h4 className="m-3">Oops! Something went wrong.</h4>;
+  const error = useRouteError();
+  console.error("Route error:", error);
+  return (
+    <div className="m-3">
+      <h4>Oops! Something went wrong.</h4>
+      <p className="text-sm text-gray-500 mt-1">
+        {error?.statusText || error?.message || "Unknown error"}
+      </p>
+      <Link to="/" className="text-blue-500 underline mt-2 inline-block">
+        Go home
+      </Link>
+    </div>
+  );
 };
 
 const router = createBrowserRouter([
@@ -67,10 +79,6 @@ const router = createBrowserRouter([
     Component: DashboardLayout,
     loader: userLoader,
     errorElement: <Error />,
-    shouldRevalidate: ({ formAction, defaultShouldRevalidate }) => {
-      if (formAction?.startsWith("/inventory/")) return false;
-      return defaultShouldRevalidate;
-    },
     hydrateFallbackElement: loader,
     children: [
       {
@@ -107,7 +115,7 @@ const router = createBrowserRouter([
         lazy: async () => ({
           Component: (await import("./features/users/pages/user")).default,
         }),
-        action: ChangeRoleAction,
+        action: userAction,
         loader: UserDataLoader,
       },
       {
@@ -115,9 +123,17 @@ const router = createBrowserRouter([
         lazy: async () => ({
           Component: (await import("./features/cars/pages/car")).default,
         }),
+        action: carAction,
         loader: CarLoader,
-        action: updateStatusAction,
       },
+      {
+        path: "/inventory/:carId/edit",
+        lazy: async () => ({
+          Component: (await import("./features/cars/pages/edit-car")).default,
+        }),
+        action: carAction,
+        loader: CarLoader,
+      }
     ],
   },
 ]);

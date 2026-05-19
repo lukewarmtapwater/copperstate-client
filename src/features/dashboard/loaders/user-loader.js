@@ -6,9 +6,10 @@ async function userLoader() {
 
   if (res.ok) {
     return await res.json();
-  } else {
-    return redirect("/login");
   }
+
+  return redirect("/login");
+
 }
 
 export default userLoader;

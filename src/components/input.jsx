@@ -14,7 +14,7 @@ function Input({
   const error = data?.fieldErrors?.[id]?.[0];
 
   return (
-    <div className="w-full flex flex-col gap-1 text-foreground">
+    <div className="flex-1 flex flex-col gap-1 text-foreground">
       {label && (
         <label htmlFor={id}>
           {label}
@@ -32,7 +32,7 @@ function Input({
           id={id}
           name={id}
           className={twMerge(
-            "px-3 py-3 w-full rounded-md border border-primary bg-white placeholder:text-foreground/60 focus:outline-none focus:border-2",
+            "w-full px-2 py-2 rounded-md border border-primary bg-white placeholder:text-foreground/60 [&::-webkit-datetime-edit]:text-foreground/60 focus:outline-none focus:border-2",
             icon && "pl-9",
             error && "border-danger",
             className,
@@ -42,7 +42,7 @@ function Input({
         />
       </div>
 
-      {error && <p className="text-danger">{error}</p>}
+      {error && <p className="text-danger text-xs">{error}</p>}
     </div>
   );
 }

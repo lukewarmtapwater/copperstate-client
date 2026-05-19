@@ -11,27 +11,40 @@
 body {
     @apply font-['Acumin'] text-sm font-light md:text-base;
 }
+
 h1 {
-    @apply text-foreground text-[60px] tracking-tighter font-medium leading-[50px];
+    @apply text-foreground text-[45px] tracking-tighter font-medium leading-[40px];
 }
+
 h2 {
-    @apply text-[45px] tracking-tighter font-normal leading-[35px];
+    @apply text-[37px] tracking-tighter font-normal leading-[35px];
 }
+
 h3 {
-    @apply text-[20px];
+    @apply text-[19px];
 }
+
 h4 {
     @apply text-[16px];
 }
+
+p,
+label {
+    @apply text-[14px] text-foreground;
+}
+
 a {
     @apply text-primary hover:underline hover:cursor-pointer;
 }
+
 svg {
-    @apply w-5 h-5 mb-[4px];
+    @apply w-[18px] h-[18px] mb-[2.5px];
 }
+
 p {
     @apply text-foreground;
 }
+
 span {
     @apply font-medium;
 }
@@ -40,9 +53,11 @@ span {
     width: 5px;
     height: 2px;
 }
+
 ::-webkit-scrollbar-track {
     background: rgb(204, 204, 204);
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: grey;
     width: 4px;
